@@ -1,0 +1,252 @@
+@import url(https://github.backroomswiki.cn/Super_Liminal/css/super-liminal.css);
+
+/* ============================================
+   Kun-Liminal 坤阈限版式 —— 黑白主题
+   基于超阈限（Super Liminal）by Ambersight
+   ============================================ */
+
+:root {
+    /* ===== 基础颜色：黑白灰体系 ===== */
+    --background-color: 248, 248, 248;
+    --text-color: 18, 18, 18;
+
+    /* ===== 装饰颜色 ===== */
+    --light-color-1: 248, 248, 248;
+    --light-color-2: 255, 255, 255;
+    --dark-color-1: 170, 170, 170;
+    --dark-color-2: 110, 110, 110;
+    --dark-color-3: 55, 55, 55;
+    --dark-color-4: 28, 28, 28;
+
+    /* ===== 特殊颜色 ===== */
+    --warning-color: 80, 80, 80;
+    --accept-color: 40, 40, 40;
+    --neutral-color: 130, 130, 130;
+    --warning-text-color: 255, 255, 255;
+    --accept-text-color: 255, 255, 255;
+    --neutral-text-color: 255, 255, 255;
+
+    /* ===== 链接颜色 ===== */
+    --link-color: 30, 30, 30;
+    --hover-link-color: 0, 0, 0;
+    --visited-link-color: 80, 80, 80;
+    --newpage-color: 110, 110, 110;
+
+    /* ===== 选中颜色 ===== */
+    --selected-background-color: 40, 40, 40;
+    --selected-text-color: 255, 255, 255;
+
+    /* ===== 滚动条 ===== */
+    --scrollbar-color: 140, 140, 140, 0.6;
+    --scrollbar-background-color: 200, 200, 200, 0.2;
+
+    /* ===== 便签颜色 ===== */
+    --note-background-color: 240, 240, 240;
+    --note-text-color: 20, 20, 20;
+    --note-border-color: 20, 20, 20, 0.3;
+
+    /* ===== 字体 ===== */
+    --body-font: Inter, "Noto Sans SC", "Noto Sans TC", Arimo, Verdana, Geneva, sans-serif;
+    --header-font: Inter, "Noto Sans SC", "Noto Sans TC", Franklin Gothic Medium, Arial, sans-serif;
+    --title-font: var(--header-font);
+    --mono-font: "JetBrains Mono", "Noto Serif SC", Consolas, monaco, monospace;
+
+    /* ===== 头部 ===== */
+    --main-header-height: 8rem;
+    --main-header-height-on-mobile: 8rem;
+    --header-height: calc(var(--main-header-height) + var(--topbar-height));
+    --header-width: 65rem;
+    --header-margin: max(calc((100% - var(--header-width)) / 2), 0px);
+    --logo-image: url("你的站标地址.svg");
+    --header-title: "The Kunrooms";
+    --header-title-font-size: 2.65rem;
+    --header-title-font-size-on-mobile: 1.6rem;
+    --header-subtitle: "你曾经在这唱跳Rap";
+    --header-subtitle-font-size: 1rem;
+    --header-subtitle-font-size-on-mobile: 0.6rem;
+
+    /* ===== 内容宽度 ===== */
+    --body-width: 52rem;
+    --content-font-size: clamp(0.87rem, calc(0.83rem + 0.195vw), 1rem);
+
+    /* ===== 侧边栏 ===== */
+    --sidebar-width: 18rem;
+    --sidebar-width-on-mobile: 15rem;
+
+    --popup-tip-content: "（点击空白处关闭）";
+}
+
+/* ===== 主题文档页特殊样式 ===== */
+.dropshadow {
+    filter: drop-shadow(9999rem 0 0 rgba(var(--text-color)));
+    position: relative;
+    transform: translateX(-9999rem);
+    margin-top: 0.5rem;
+    opacity: 0.85;
+}
+
+.introfont {
+    font-size: min(calc((100vw - 2rem) / 5.5), 1.7rem);
+    display: flex;
+    justify-content: space-between;
+    max-width: 30rem;
+    color: rgba(var(--text-color));
+    font-weight: 900;
+    margin: 1rem auto 2rem;
+    padding: 0 1rem;
+    border-bottom: rgba(var(--dark-color-3)) solid 0.2rem;
+    box-sizing: border-box;
+}
+
+.theme-setting-preview {
+    margin: 1rem 0;
+}
+
+.theme-setting-preview img {
+    float: left;
+    width: 50%;
+    margin: 1rem 1rem 1rem 0;
+    min-width: 25rem;
+    box-sizing: border-box;
+    border: rgba(var(--dark-color-3)) solid 0.15rem;
+}
+
+.theme-setting-preview .code {
+    background: rgba(var(--light-color-1));
+}
+
+@media only screen and (max-width: 720px) {
+    .theme-setting-preview img {
+        float: none;
+        margin: 1rem 0 0;
+        width: 100%;
+        min-width: unset;
+    }
+}
+
+/* ===== 坤室专属组件 ===== */
+
+/* K.M.E.G. 档案头 */
+.kmeg-header {
+    background: rgba(var(--dark-color-4));
+    color: rgba(var(--light-color-2));
+    padding: 0.8rem 1.2rem;
+    border-left: 0.4rem solid rgba(var(--dark-color-1));
+    margin: 1.5rem 0 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.kmeg-header::before {
+    content: "";
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: rgba(var(--light-color-2));
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 80 L30 45 L40 35 L60 35 L70 45 L70 80' fill='none' stroke='black' stroke-width='8'/%3E%3Cpath d='M40 38 L35 20 M60 38 L65 20' stroke='black' stroke-width='6'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M30 80 L30 45 L40 35 L60 35 L70 45 L70 80' fill='none' stroke='black' stroke-width='8'/%3E%3Cpath d='M40 38 L35 20 M60 38 L65 20' stroke='black' stroke-width='6'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+}
+
+/* 黑子转化进度条 */
+.heizi-progress {
+    display: flex;
+    gap: 0.3rem;
+    margin: 1rem 0;
+}
+
+.heizi-progress .stage {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 0.1rem solid rgba(var(--dark-color-3));
+    background: rgba(var(--light-color-2));
+    color: rgba(var(--dark-color-3));
+}
+
+.heizi-progress .stage.active {
+    background: rgba(var(--dark-color-3));
+    color: rgba(var(--light-color-2));
+}
+
+.heizi-progress .stage.danger {
+    background: rgba(var(--dark-color-4));
+    color: rgba(var(--light-color-2));
+    border-color: rgba(var(--dark-color-4));
+}
+
+/* 荔枝茶状态指示器 */
+.lizhi-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border: 0.1rem solid rgba(var(--dark-color-3));
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: rgba(var(--light-color-2));
+    color: rgba(var(--dark-color-3));
+}
+
+.lizhi-status::before {
+    content: "●";
+    color: rgba(var(--dark-color-2));
+    font-size: 0.6rem;
+}
+
+.lizhi-status.stable::before {
+    color: rgba(40, 40, 40);
+}
+
+.lizhi-status.warning::before {
+    color: rgba(110, 110, 110);
+}
+
+.lizhi-status.danger::before {
+    color: rgba(180, 180, 180);
+}
+
+/* ===== 引用块与表格微调 ===== */
+.blockquote {
+    border-left: 0.3rem solid rgba(var(--dark-color-2));
+    background: rgba(var(--light-color-2));
+}
+
+.styled-quote {
+    border-left: 0.3rem solid rgba(var(--dark-color-3));
+    background: rgba(var(--light-color-2));
+}
+
+.dark-styled-quote {
+    border-left: 0.3rem solid rgba(var(--dark-color-4));
+    background: rgba(var(--dark-color-4));
+    color: rgba(var(--light-color-2));
+}
+
+table.wiki-content-table th {
+    background: rgba(var(--dark-color-4));
+    color: rgba(var(--light-color-2));
+}
+
+/* ===== 评分模块微调 ===== */
+.page-rate-widget-box .rate-points {
+    background: rgba(var(--dark-color-4));
+    color: rgba(var(--light-color-2));
+}
+
+/* ===== 页脚微调 ===== */
+#footer {
+    background: rgba(var(--dark-color-4));
+    color: rgba(var(--light-color-2));
+}
+
+#footer a {
+    color: rgba(var(--light-color-2));
+}
