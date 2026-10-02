@@ -1,0 +1,613 @@
+@charset "UTF-8";
+
+/* ============================================================
+   K.M.E.G. 异常迷因档案 —— 组件样式
+   Meme Documentation Component
+   基于 Kun-Liminal 坤阈限版式，紫金档案配色
+   ============================================================ */
+
+/* ===== 字体引入 ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap');
+
+
+/* ============================================================
+   1. 配色变量
+   ============================================================ */
+:root {
+    /* 紫色系 —— 主色调 */
+    --purple-1: 88, 24, 152;
+    --purple-2: 123, 44, 191;
+    --purple-3: 159, 84, 220;
+    --purple-deep: 45, 12, 80;
+
+    /* 金色系 —— 强调色 */
+    --gold-1: 212, 175, 55;
+    --gold-2: 245, 215, 110;
+    --gold-3: 168, 132, 30;
+
+    /* 字体分层 */
+    --kmeg-body-font: "Noto Sans SC", "Noto Sans TC", Arimo, Verdana, Geneva, sans-serif;
+    --kmeg-mono-font: "JetBrains Mono", "Noto Serif SC", Consolas, monaco, monospace;
+    --kmeg-display-font: "Orbitron", "Noto Sans SC", sans-serif;
+    --kmeg-handwrite-font: "Zhi Mang Xing", "Noto Serif SC", serif;
+
+    /* 覆盖坤阈限的装饰色 */
+    --dark-color-1: var(--purple-3);
+    --dark-color-2: var(--purple-2);
+    --dark-color-3: var(--purple-1);
+    --dark-color-4: var(--purple-deep);
+
+    /* 链接色 */
+    --link-color: var(--purple-1);
+    --hover-link-color: var(--gold-1);
+    --visited-link-color: var(--purple-2);
+}
+
+
+/* ============================================================
+   2. 档案文件头
+   ============================================================ */
+.kmeg-file-header {
+    position: relative;
+    padding: 2.5rem 2rem 2rem;
+    margin: 1rem 0 2rem;
+    border: 0.15rem solid rgba(var(--purple-1));
+    background: linear-gradient(
+        135deg,
+        rgba(var(--purple-1), 0.95) 0%,
+        rgba(var(--purple-2), 0.85) 40%,
+        rgba(var(--purple-deep), 0.95) 100%
+    );
+    color: rgba(var(--light-color-2));
+    overflow: hidden;
+}
+
+/* 顶部紫金渐变横条 */
+.kmeg-file-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.4rem;
+    background: linear-gradient(
+        90deg,
+        rgba(var(--purple-1)) 0%,
+        rgba(var(--gold-1)) 50%,
+        rgba(var(--purple-1)) 100%
+    );
+}
+
+/* 扫描线纹理 */
+.kmeg-file-header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.025) 0px,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    pointer-events: none;
+}
+
+.kmeg-file-header .file-label {
+    position: absolute;
+    top: -0.7rem;
+    left: 1.5rem;
+    background: rgba(var(--light-color-1));
+    padding: 0 0.8rem;
+    color: rgba(var(--purple-1));
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    z-index: 2;
+}
+
+.kmeg-file-header .file-number {
+    font-family: var(--kmeg-mono-font);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: rgba(var(--gold-2));
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.kmeg-file-header .file-title {
+    font-family: var(--kmeg-display-font);
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    margin: 0.5rem 0;
+    background: linear-gradient(
+        90deg,
+        rgba(var(--gold-2)) 0%,
+        rgba(var(--gold-1)) 50%,
+        rgba(var(--gold-3)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+
+.kmeg-file-header .file-subtitle {
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    color: rgba(var(--light-color-2), 0.85);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.kmeg-file-header .file-status {
+    display: inline-block;
+    padding: 0.25rem 0.8rem;
+    background: rgba(var(--gold-1));
+    color: rgba(var(--purple-deep));
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    position: relative;
+    z-index: 1;
+}
+
+/* 归档印章 */
+.kmeg-file-header .file-seal {
+    position: absolute;
+    right: 2rem;
+    bottom: 1.5rem;
+    padding: 0.4rem 0.9rem;
+    border: 0.15rem solid rgba(var(--gold-1));
+    color: rgba(var(--gold-1));
+    font-family: var(--kmeg-display-font);
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    transform: rotate(-8deg);
+    opacity: 0.9;
+    z-index: 2;
+}
+
+.kmeg-file-header .file-seal::after {
+    content: "";
+    position: absolute;
+    inset: -0.25rem;
+    border: 0.05rem solid rgba(var(--gold-1), 0.5);
+}
+
+
+/* ============================================================
+   3. 档案章节标题
+   ============================================================ */
+.kmeg-section {
+    margin: 2.5rem 0;
+    padding-left: 1.2rem;
+    border-left: 0.3rem solid rgba(var(--purple-1));
+    border-image: linear-gradient(
+        180deg,
+        rgba(var(--purple-1)) 0%,
+        rgba(var(--gold-1)) 100%
+    ) 1;
+    border-left-width: 0.3rem;
+    border-left-style: solid;
+}
+
+.kmeg-section .section-number {
+    display: block;
+    font-family: var(--kmeg-mono-font);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: rgba(var(--gold-1));
+    margin-bottom: 0.3rem;
+}
+
+.kmeg-section .section-title {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(var(--purple-1));
+    margin: 0 0 1rem;
+    letter-spacing: 0.05em;
+}
+
+.kmeg-section p {
+    line-height: 1.75;
+}
+
+
+/* ============================================================
+   4. 档案时间线
+   ============================================================ */
+.kmeg-timeline {
+    border: 0.1rem solid rgba(var(--purple-1));
+    margin: 1.5rem 0;
+    background: rgba(var(--light-color-1));
+}
+
+.kmeg-timeline .timeline-row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    padding: 0.9rem 1.2rem;
+    border-bottom: 0.05rem solid rgba(var(--purple-3), 0.3);
+}
+
+.kmeg-timeline .timeline-row:last-child {
+    border-bottom: none;
+}
+
+.kmeg-timeline .timeline-row.active {
+    background: rgba(var(--gold-1), 0.08);
+    border-left: 0.3rem solid rgba(var(--gold-1));
+    padding-left: 0.9rem;
+}
+
+.kmeg-timeline .timeline-date {
+    font-family: var(--kmeg-mono-font);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(var(--purple-2));
+}
+
+.kmeg-timeline .timeline-label {
+    color: rgba(var(--text-color));
+}
+
+.kmeg-timeline .timeline-label strong {
+    color: rgba(var(--gold-1));
+}
+
+@media only screen and (max-width: 600px) {
+    .kmeg-timeline .timeline-row {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+    }
+}
+
+
+/* ============================================================
+   5. 参赛作品清单
+   ============================================================ */
+.kmeg-manifest {
+    margin: 1.5rem 0;
+}
+
+.kmeg-manifest .item {
+    display: grid;
+    grid-template-columns: 5rem 1fr 7rem;
+    align-items: center;
+    padding: 0.7rem 0.5rem 0.7rem 0.8rem;
+    border-bottom: 0.05rem solid rgba(var(--purple-3), 0.3);
+    position: relative;
+    transition: background 0.25s ease, padding-left 0.25s ease;
+}
+
+.kmeg-manifest .item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(var(--purple-1)) 0%,
+        rgba(var(--gold-1)) 100%
+    );
+    transition: width 0.25s ease;
+}
+
+.kmeg-manifest .item:hover {
+    background: rgba(var(--purple-3), 0.06);
+    padding-left: 1.1rem;
+}
+
+.kmeg-manifest .item:hover::before {
+    width: 0.3rem;
+}
+
+.kmeg-manifest .item-number {
+    font-family: var(--kmeg-mono-font);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(var(--purple-1));
+}
+
+.kmeg-manifest .item-title a {
+    color: rgba(var(--text-color));
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.kmeg-manifest .item-title a:hover {
+    color: rgba(var(--purple-1));
+    text-decoration: underline;
+}
+
+.kmeg-manifest .item-status {
+    text-align: right;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: rgba(var(--gold-1));
+}
+
+.kmeg-manifest .item-status.closed {
+    color: rgba(var(--dark-color-2));
+}
+
+@media only screen and (max-width: 600px) {
+    .kmeg-manifest .item {
+        grid-template-columns: 3.5rem 1fr;
+        grid-template-areas:
+            "num title"
+            "num status";
+        gap: 0.2rem 0.5rem;
+    }
+    .kmeg-manifest .item-number { grid-area: num; }
+    .kmeg-manifest .item-title { grid-area: title; }
+    .kmeg-manifest .item-status { grid-area: status; text-align: left; }
+}
+
+
+/* ============================================================
+   6. 奖项标签
+   ============================================================ */
+.kmeg-award {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    border-radius: 0.15rem;
+    margin-right: 0.4rem;
+}
+
+.kmeg-award.gold {
+    background: linear-gradient(
+        135deg,
+        rgba(var(--gold-2)) 0%,
+        rgba(var(--gold-1)) 50%,
+        rgba(var(--gold-3)) 100%
+    );
+    color: rgba(var(--purple-deep));
+    box-shadow: 0 0 0.5rem rgba(var(--gold-1), 0.4);
+}
+
+.kmeg-award.silver {
+    background: rgba(var(--purple-2));
+    color: rgba(var(--light-color-2));
+}
+
+.kmeg-award.bronze {
+    background: rgba(var(--purple-1));
+    color: rgba(var(--light-color-2));
+}
+
+.kmeg-award.honor {
+    background: transparent;
+    border: 0.15rem solid rgba(var(--gold-1));
+    color: rgba(var(--gold-1));
+}
+
+
+/* ============================================================
+   7. 印章
+   ============================================================ */
+.kmeg-stamp {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 0.2rem solid rgba(var(--gold-1));
+    color: rgba(var(--gold-1));
+    font-family: var(--kmeg-display-font);
+    font-weight: 900;
+    letter-spacing: 0.3em;
+    font-size: 0.9rem;
+    transform: rotate(-12deg);
+    opacity: 0.85;
+    border-radius: 0.3rem;
+    position: relative;
+}
+
+.kmeg-stamp::after {
+    content: "";
+    position: absolute;
+    inset: -0.3rem;
+    border: 0.05rem solid rgba(var(--gold-1), 0.5);
+    border-radius: 0.4rem;
+}
+
+
+/* ============================================================
+   8. 档案页脚
+   ============================================================ */
+.kmeg-footer {
+    margin-top: 3rem;
+    padding: 1.5rem 1rem;
+    border-top: 0.2rem solid rgba(var(--purple-1));
+    background: rgba(var(--purple-1), 0.03);
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: rgba(var(--dark-color-2));
+}
+
+.kmeg-footer .seal {
+    display: inline-block;
+    width: 4rem;
+    height: 4rem;
+    border: 0.15rem solid rgba(var(--gold-1));
+    border-radius: 50%;
+    color: rgba(var(--gold-1));
+    font-family: var(--kmeg-display-font);
+    font-weight: 900;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    padding-top: 1.1rem;
+    margin-bottom: 0.8rem;
+    box-sizing: border-box;
+    transform: rotate(-5deg);
+}
+
+.kmeg-footer .meta {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+
+/* ============================================================
+   9. 手写批注
+   ============================================================ */
+.kmeg-handwrite {
+    font-family: var(--kmeg-handwrite-font);
+    font-size: 1.3rem;
+    color: rgba(var(--purple-1));
+    display: inline-block;
+    transform: rotate(-2deg);
+    padding: 0.2rem 0.5rem;
+}
+
+
+/* ============================================================
+   10. 故障文字效果
+   ============================================================ */
+.kmeg-glitch {
+    position: relative;
+    color: rgba(var(--purple-1));
+    font-family: var(--kmeg-display-font);
+    display: inline-block;
+}
+
+.kmeg-glitch::before,
+.kmeg-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.kmeg-glitch::before {
+    color: rgba(var(--gold-1));
+    animation: kmeg-glitch-1 2.5s infinite;
+}
+
+.kmeg-glitch::after {
+    color: rgba(var(--purple-3));
+    animation: kmeg-glitch-2 3.2s infinite;
+}
+
+@keyframes kmeg-glitch-1 {
+    0%, 90%, 100% { transform: translate(0); }
+    92% { transform: translate(-2px, 1px); }
+    94% { transform: translate(2px, -1px); }
+}
+
+@keyframes kmeg-glitch-2 {
+    0%, 88%, 100% { transform: translate(0); }
+    90% { transform: translate(2px, -2px); }
+    93% { transform: translate(-2px, 2px); }
+}
+
+
+/* ============================================================
+   11. 进度条
+   ============================================================ */
+.kmeg-progress {
+    height: 0.3rem;
+    background: rgba(var(--purple-3), 0.2);
+    border-radius: 0.15rem;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.kmeg-progress .bar {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(var(--purple-1)) 0%,
+        rgba(var(--gold-1)) 100%
+    );
+    width: 0;
+    transition: width 1s ease;
+}
+
+
+/* ============================================================
+   12. 信息卡片（通用）
+   ============================================================ */
+.kmeg-card {
+    background: rgba(var(--light-color-1));
+    border-left: 0.3rem solid rgba(var(--purple-2));
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    border-radius: 0.3rem;
+    transition: border-left-color 0.25s ease;
+}
+
+.kmeg-card:hover {
+    border-left-color: rgba(var(--gold-1));
+}
+
+.kmeg-card .card-title {
+    font-weight: 700;
+    color: rgba(var(--purple-1));
+    margin-bottom: 0.3rem;
+}
+
+.kmeg-card .card-meta {
+    font-family: var(--kmeg-mono-font);
+    font-size: 0.8rem;
+    color: rgba(var(--dark-color-2));
+    letter-spacing: 0.1em;
+}
+
+
+/* ============================================================
+   13. 引用块（档案批注版）
+   ============================================================ */
+.kmeg-quote {
+    border-left: 0.3rem solid rgba(var(--gold-1));
+    background: rgba(var(--gold-1), 0.05);
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: rgba(var(--text-color));
+}
+
+
+/* ============================================================
+   14. 响应式微调
+   ============================================================ */
+@media only screen and (max-width: 600px) {
+    .kmeg-file-header {
+        padding: 2rem 1.2rem 1.5rem;
+    }
+
+    .kmeg-file-header .file-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.08em;
+    }
+
+    .kmeg-file-header .file-seal {
+        right: 1rem;
+        bottom: 0.8rem;
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .kmeg-section .section-title {
+        font-size: 1.2rem;
+    }
+}
