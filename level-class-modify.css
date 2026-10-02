@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+/* ============================================================
+   Kunrooms 生存难度组件 —— 文字覆盖
+   仅覆盖 ::after 的 content，不改动任何其它样式
+   加载顺序必须在 component:level-class 的 CSS 之后
+   ============================================================ */
+
+/* ===== class-0 ===== */
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-0 ul li:nth-child(1) > .default::after { content: "安全"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-0 ul li:nth-child(2) > .default::after { content: "稳定"; }
+.lang-tr .bottom-box.class-0 ul li:nth-child(2) > .default::after { content: "穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-0 ul li:nth-child(3) > .default::after { content: "无实体"; }
+.lang-tr .bottom-box.class-0 ul li:nth-child(3) > .default::after { content: "無實體"; }
+
+/* ===== class-1 ===== */
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-1 ul li:nth-child(1) > .default::after { content: "安全"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-1 ul li:nth-child(2) > .default::after { content: "稳定"; }
+.lang-tr .bottom-box.class-1 ul li:nth-child(2) > .default::after { content: "穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-1 ul li:nth-child(3) > .default::after { content: "极少量黑子"; }
+.lang-tr .bottom-box.class-1 ul li:nth-child(3) > .default::after { content: "極少量黑子"; }
+
+/* ===== class-2 ===== */
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-2 ul li:nth-child(1) > .default::after { content: "不安全"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-2 ul li:nth-child(2) > .default::after { content: "稳定"; }
+.lang-tr .bottom-box.class-2 ul li:nth-child(2) > .default::after { content: "穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-2 ul li:nth-child(3) > .default::after { content: "少量黑子"; }
+.lang-tr .bottom-box.class-2 ul li:nth-child(3) > .default::after { content: "少量黑子"; }
+
+/* ===== class-3 ===== */
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-3 ul li:nth-child(1) > .default::after { content: "不安全"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-3 ul li:nth-child(2) > .default::after { content: "不稳定"; }
+.lang-tr .bottom-box.class-3 ul li:nth-child(2) > .default::after { content: "不穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-3 ul li:nth-child(3) > .default::after { content: "少量黑子"; }
+.lang-tr .bottom-box.class-3 ul li:nth-child(3) > .default::after { content: "少量黑子"; }
+
+/* ===== class-4 ===== */
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-4 ul li:nth-child(1) > .default::after { content: "不安全"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-4 ul li:nth-child(2) > .default::after { content: "不稳定"; }
+.lang-tr .bottom-box.class-4 ul li:nth-child(2) > .default::after { content: "不穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-4 ul li:nth-child(3) > .default::after { content: "中量黑子"; }
+.lang-tr .bottom-box.class-4 ul li:nth-child(3) > .default::after { content: "中量黑子"; }
+
+/* ===== class-5 ===== */
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-5 ul li:nth-child(1) > .default::after { content: "不安全"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-5 ul li:nth-child(2) > .default::after { content: "不稳定"; }
+.lang-tr .bottom-box.class-5 ul li:nth-child(2) > .default::after { content: "不穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) .bottom-box.class-5 ul li:nth-child(3) > .default::after { content: "黑子横行"; }
+.lang-tr .bottom-box.class-5 ul li:nth-child(3) > .default::after { content: "黑子橫行"; }
+
+/* ===== unknown / 未知 ===== */
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-unknown, .class-未知).top-box .bottom-text::after { content: "未定分级"; }
+.lang-tr :is(.class-unknown, .class-未知).top-box .bottom-text::after { content: "未定分級"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-unknown, .class-未知).bottom-box ul li:nth-child(1) > .default::after { content: "性质未解明"; }
+.lang-tr :is(.class-unknown, .class-未知).bottom-box ul li:nth-child(1) > .default::after { content: "性質未解明"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-unknown, .class-未知).bottom-box ul li:nth-child(2) > .default::after { content: "信息未知"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-unknown, .class-未知).bottom-box ul li:nth-child(3) > .default::after { content: "未探明黑子"; }
+.lang-tr :is(.class-unknown, .class-未知).bottom-box ul li:nth-child(3) > .default::after { content: "未探明黑子"; }
+
+/* ===== habitable / 宜居 ===== */
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-habitable, .class-宜居).top-box .bottom-text::after { content: "等级：宜居"; }
+.lang-tr :is(.class-habitable, .class-宜居).top-box .bottom-text::after { content: "等級：宜居"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-habitable, .class-宜居).bottom-box ul li:nth-child(1) > .default::after { content: "安全"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-habitable, .class-宜居).bottom-box ul li:nth-child(2) > .default::after { content: "长期聚居地"; }
+.lang-tr :is(.class-habitable, .class-宜居).bottom-box ul li:nth-child(2) > .default::after { content: "長期聚居地"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-habitable, .class-宜居).bottom-box ul li:nth-child(3) > .default::after { content: "无有害黑子"; }
+.lang-tr :is(.class-habitable, .class-宜居).bottom-box ul li:nth-child(3) > .default::after { content: "無有害黑子"; }
+
+/* ===== deadzone / 死区 / 死區 ===== */
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-deadzone, .class-死区, .class-死區).top-box .bottom-text::after { content: "等级：死区"; }
+.lang-tr :is(.class-deadzone, .class-死区, .class-死區).top-box .bottom-text::after { content: "等級：死區"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-deadzone, .class-死区, .class-死區).bottom-box ul li:nth-child(1) > .default::after { content: "环境危害"; }
+.lang-tr :is(.class-deadzone, .class-死区, .class-死區).bottom-box ul li:nth-child(1) > .default::after { content: "環境危害"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-deadzone, .class-死区, .class-死區).bottom-box ul li:nth-child(2) > .default::after { content: "极度不宜居"; }
+.lang-tr :is(.class-deadzone, .class-死区, .class-死區).bottom-box ul li:nth-child(2) > .default::after { content: "極度不宜居"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-deadzone, .class-死区, .class-死區).bottom-box ul li:nth-child(3) > .default::after { content: "潜在黑子"; }
+.lang-tr :is(.class-deadzone, .class-死区, .class-死區).bottom-box ul li:nth-child(3) > .default::after { content: "潛在黑子"; }
+
+/* ===== pending / 等待分级 / 等待分級 ===== */
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-pending, .class-等待分级, .class-等待分級).top-box .bottom-text::after { content: "等待分级"; }
+.lang-tr :is(.class-pending, .class-等待分级, .class-等待分級).top-box .bottom-text::after { content: "等待分級"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-pending, .class-等待分级, .class-等待分級).bottom-box ul li:nth-child(1) > .default::after { content: "安全性未知"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-pending, .class-等待分级, .class-等待分級).bottom-box ul li:nth-child(2) > .default::after { content: "不稳定"; }
+.lang-tr :is(.class-pending, .class-等待分级, .class-等待分級).bottom-box ul li:nth-child(2) > .default::after { content: "不穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-pending, .class-等待分级, .class-等待分級).bottom-box ul li:nth-child(3) > .default::after { content: "未探明黑子"; }
+.lang-tr :is(.class-pending, .class-等待分级, .class-等待分級).bottom-box ul li:nth-child(3) > .default::after { content: "未探明黑子"; }
+
+/* ===== N/A / 不适用 / 不適用 ===== */
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-n\/a, .class-不适用, .class-不適用).top-box .bottom-text::after { content: "不适用"; }
+.lang-tr :is(.class-n\/a, .class-不适用, .class-不適用).top-box .bottom-text::after { content: "不適用"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-n\/a, .class-不适用, .class-不適用).bottom-box ul li:nth-child(1) > .default::after { content: "不存在"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-n\/a, .class-不适用, .class-不適用).bottom-box ul li:nth-child(2) > .default::after { content: "缺失物质"; }
+.lang-tr :is(.class-n\/a, .class-不适用, .class-不適用).bottom-box ul li:nth-child(2) > .default::after { content: "缺失物質"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-n\/a, .class-不适用, .class-不適用).bottom-box ul li:nth-child(3) > .default::after { content: "不适合生命存在"; }
+.lang-tr :is(.class-n\/a, .class-不适用, .class-不適用).bottom-box ul li:nth-child(3) > .default::after { content: "不適合生命存在"; }
+
+/* ===== amended / 修正 / 运变 / 運變 ===== */
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-amended, .class-修正, .class-运变, .class-運變).top-box .bottom-text::after { content: "等级：修正"; }
+.lang-tr :is(.class-amended, .class-修正, .class-运变, .class-運變).top-box .bottom-text::after { content: "等級：修正"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-amended, .class-修正, .class-运变, .class-運變).bottom-box ul li:nth-child(1) > .default::after { content: "不安全且不稳定"; }
+.lang-tr :is(.class-amended, .class-修正, .class-运变, .class-運變).bottom-box ul li:nth-child(1) > .default::after { content: "不安全且不穩定"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-amended, .class-修正, .class-运变, .class-運變).bottom-box ul li:nth-child(2) > .default::after { content: "未知黑子数量"; }
+.lang-tr :is(.class-amended, .class-修正, .class-运变, .class-運變).bottom-box ul li:nth-child(2) > .default::after { content: "未知黑子數量"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-amended, .class-修正, .class-运变, .class-運變).bottom-box ul li:nth-child(3) > .default::after { content: "文件被篡改"; }
+
+/* ===== omega / 终结 / 終結 ===== */
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-omega, .class-终结, .class-終結).top-box .bottom-text::after { content: "终结"; }
+.lang-tr :is(.class-omega, .class-终结, .class-終結).top-box .bottom-text::after { content: "終結"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-omega, .class-终结, .class-終結).bottom-box ul li:nth-child(1) > .default::after { content: "隐藏的档案"; }
+.lang-tr :is(.class-omega, .class-终结, .class-終結).bottom-box ul li:nth-child(1) > .default::after { content: "隱藏的檔案"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-omega, .class-终结, .class-終結).bottom-box ul li:nth-child(2) > .default::after { content: "机密性质"; }
+.lang-tr :is(.class-omega, .class-终结, .class-終結).bottom-box ul li:nth-child(2) > .default::after { content: "機密性質"; }
+:is(.sd-container[class*="{"], .lang-cn) :is(.class-omega, .class-终结, .class-終結).bottom-box ul li:nth-child(3) > .default::after { content: "受保护的实体"; }
+.lang-tr :is(.class-omega, .class-终结, .class-終結).bottom-box ul li:nth-child(3) > .default::after { content: "受保護的實體"; }
