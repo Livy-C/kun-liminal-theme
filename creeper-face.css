@@ -4581,3 +4581,63 @@ hr {
     --banner-title: "BLOCKROOMS" !important;
     --banner-subtitle: "方块阈限！" !important;
 }
+
+
+
+/* ================================================================
+   9. 页底操作栏：恢复分段控件外观
+   ================================================================ */
+
+/* ══════════════════════════════════════════════════════════════
+   页底操作栏：恢复「分段控件」外观
+   ──────────────────────────────────────────────────────────────
+   基础版（至上主义）的设计是：
+     · 容器 #page-options-bottom 是 5 列网格，带一圈外框；
+     · 按钮 .btn 只保留 border-bottom，和容器外框拼成一个整体的
+       分段控件（.page-options-bottom a { border-left/right/top: none }）；
+     · a#more-options-button 占 grid-column: 5/6; grid-row: 1/3，
+       即最右侧那格跨两行。
+
+   苦力怕脸的覆盖层给所有 .btn 加了四边 2px 的 3D 描边（!important 级），
+   于是底栏变成了每个按钮各带一个方框：
+     · 相邻按钮之间出现 2px + 2px 的双线；
+     · 最右侧那个跨两行的「选项」格成了独立方框，视觉上脱离网格；
+     · :focus / 窄屏 :hover 时还会再套一层四边描边，跳一下。
+
+   实测：几何本身并未错位（1366px 与 531px 下，所有按钮的
+   「溢出右 / 溢出下」均为 0，5 列 / 2 列网格正确）。
+   所以这里只修描边，不动网格，也不影响别处的 Minecraft 按钮。
+
+   想恢复成全套 Minecraft 方框按钮，把本节整段删掉即可。
+   ══════════════════════════════════════════════════════════════ */
+
+/* 容器：把外框加回来（苦力怕脸用 border: unset 去掉了它） */
+#page-options-container .page-options-bottom {
+    border: var(--global-border-width) solid rgb(var(--global-border));
+    border-bottom: none;
+}
+
+/* 第二格与第一格共用同一条边框，不重复画 */
+#page-options-container #page-options-bottom-2 {
+    border-top: none;
+}
+
+/* 按钮：只留下边框 */
+#page-options-container .page-options-bottom a.btn,
+#page-options-container .page-options-bottom a.btn:is(:hover, :focus) {
+    border-style: solid !important;
+    border-width: 0 0 var(--global-border-width) 0 !important;
+    border-color: rgb(var(--global-border)) !important;
+}
+
+/* 跨两行的「选项」格：补一条左分隔线，把它和左边四格分开 */
+#page-options-container .page-options-bottom a#more-options-button {
+    border-left: var(--global-border-width) solid rgb(var(--global-border)) !important;
+}
+
+/* 窄屏下「选项」独占一整行，不需要左分隔线 */
+@media only screen and (max-width: 768px) {
+    #page-options-container .page-options-bottom a#more-options-button {
+        border-left: unset !important;
+    }
+}
