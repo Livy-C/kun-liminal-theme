@@ -4469,15 +4469,13 @@ hr {
    ══════════════════════════════════════════════════════════════ */
 @font-face {
     font-family: "Minecraft";
-    src: url("https://cdn.jsdelivr.net/npm/@south-paw/typeface-minecraft@1.0.0/files/minecraft.woff2") format("woff2"),
-         url("https://cdn.jsdelivr.net/npm/@south-paw/typeface-minecraft@1.0.0/files/minecraft.woff") format("woff");
+    src: url("https://blockrooms-wiki-cn.wikidot.com/local--files/start/minecraft.woff2") format("woff2"),
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 :root {
-    /* 点阵字体需要整数像素 */
     --global-font-size: 16px;
     --global-final-size: var(--global-font-size);
 
