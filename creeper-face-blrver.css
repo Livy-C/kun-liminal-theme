@@ -1415,3 +1415,17 @@ div.rate-box-with-credit-button,
     #page-content .bannerContainer .navigator a { font-size: 1.1rem; }
     #page-content .bannerContainer .navigator { margin: 0 0 2rem 0; }
 }
+
+/* === 修复：主页内容不再被横幅遮挡 === */
+#content-wrap {
+    margin: 0 1rem 0 !important;
+    padding-top: 1rem !important;
+}
+
+@media (min-width: 64rem) {
+    #content-wrap {
+        gap: unset;
+        margin: 0 1rem 0 !important;
+        padding: 1rem 0 0 0 !important;
+    }
+}
