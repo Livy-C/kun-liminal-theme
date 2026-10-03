@@ -1429,3 +1429,82 @@ div.rate-box-with-credit-button,
         padding: 1rem 0 0 0 !important;
     }
 }
+
+#header {
+    position: relative !important;
+    top: auto !important;
+}
+
+#header h1,
+#top-bar {
+    position: relative !important;
+    top: auto !important;
+}
+/* 1. 隐藏横幅 */
+#header h2 {
+    display: none !important;
+}
+
+/* 2. header 的 sticky top 改为只计算 h1 + top-bar */
+#header {
+    top: calc(0px - var(--header-height) - var(--topbar-height)) !important;
+    grid-template-rows: auto auto auto var(--header-height) var(--topbar-height) !important;
+}
+
+/* 3. 内容区不再有负 margin，从 header 下方开始 */
+#content-wrap {
+    margin: 0 1rem 0 !important;
+    padding-top: 1rem !important;
+}
+
+@media (min-width: 64rem) {
+    #content-wrap {
+        gap: unset !important;
+        margin: 0 1rem 0 !important;
+        padding: 1rem 0 0 0 !important;
+    }
+}
+
+/* 4. bannerContainer 修复（保留，确保主页正常） */
+#page-content .bannerContainer {
+    display: grid !important;
+    grid-template-areas:
+        "welcome welcome welcome"
+        "qq site-rules join" !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    grid-column-gap: 3% !important;
+    grid-row-gap: 1rem !important;
+}
+
+#page-content .bannerContainer .welcome {
+    grid-area: welcome !important;
+    display: block !important;
+    background-color: rgb(60, 60, 60) !important;
+    color: rgb(220, 220, 220) !important;
+    font-style: italic !important;
+    padding: 1rem !important;
+    border-radius: 0.5rem !important;
+    visibility: visible !important;
+}
+
+#page-content .bannerContainer .navigator {
+    display: flex !important;
+    background-color: rgb(60, 60, 60) !important;
+    border-radius: 0 0 1rem 1rem !important;
+    height: min-content !important;
+    margin: 0 !important;
+    visibility: visible !important;
+}
+
+#page-content .bannerContainer .navigator a {
+    padding: 0.75rem 0 !important;
+    width: 100% !important;
+    text-align: center !important;
+    color: rgb(220, 220, 220) !important;
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+}
+
+#page-content .bannerContainer .navigator.qq { grid-area: qq !important; }
+#page-content .bannerContainer .navigator.site-rules { grid-area: site-rules !important; }
+#page-content .bannerContainer .navigator.join { grid-area: join !important; }
