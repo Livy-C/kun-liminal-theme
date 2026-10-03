@@ -1583,3 +1583,32 @@ table:is(.wiki-content-table, .page-compare, table.form.grid) {
         margin: 0;
     }
 }
+
+:root {
+    --banner-height: 10rem;
+}
+
+/* 2. 去掉 #content-wrap 的负 margin，让内容从 header 下方开始 */
+#content-wrap {
+    margin: 0 1rem 0 !important;
+    padding-top: 1rem !important;
+}
+
+@media (min-width: 64rem) {
+    #content-wrap {
+        margin: 0 1rem 0 !important;
+        padding: 1rem 0 0 0 !important;
+    }
+}
+
+/* 3. header 不再用负 top 滚出视口 */
+#header {
+    top: 0 !important;
+}
+
+/* 4. 移动端也同步 */
+@media screen and (max-width: 768px) {
+    :root {
+        --banner-height: 7rem;
+    }
+}
