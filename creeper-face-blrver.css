@@ -1416,45 +1416,105 @@ div.rate-box-with-credit-button,
     #page-content .bannerContainer .navigator { margin: 0 0 2rem 0; }
 }
 
-/* === 修复：主页内容不再被横幅遮挡 === */
-#content-wrap {
-    margin: 0 1rem 0 !important;
-    padding-top: 1rem !important;
-}
+/* ============================================================
+   最终修复：隐藏横幅 + 顶栏吸附 + 主页布局
+   ============================================================ */
 
-@media (min-width: 64rem) {
-    #content-wrap {
-        gap: unset;
-        margin: 0 1rem 0 !important;
-        padding: 1rem 0 0 0 !important;
-    }
-}
-
-#header {
-    position: relative !important;
-    top: auto !important;
-}
-
-#header h1,
-#top-bar {
-    position: relative !important;
-    top: auto !important;
-}
-/* 1. 隐藏横幅 */
+/* 1. 隐藏横幅及背景层 */
 #header h2 {
     display: none !important;
 }
 
-/* 2. header 的 sticky top 改为只计算 h1 + top-bar */
-#header {
-    top: calc(0px - var(--header-height) - var(--topbar-height)) !important;
-    grid-template-rows: auto auto auto var(--header-height) var(--topbar-height) !important;
+#header-extra-div-1 {
+    display: none !important;
 }
 
-/* 3. 内容区不再有负 margin，从 header 下方开始 */
+/* 2. header 改成 2 行 grid，整体 sticky 在顶部 */
+#header {
+    display: grid !important;
+    grid-template-columns: var(--header-ui-size) 1fr auto auto !important;
+    grid-template-rows: var(--header-height) var(--topbar-height) !important;
+    position: sticky !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    z-index: 100 !important;
+    pointer-events: auto !important;
+}
+
+/* 3. h1 放在第 1 行，第 2 列 */
+#header h1 {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+    position: static !important;
+    top: auto !important;
+    height: var(--header-height) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: rgb(var(--header-bg)) !important;
+    z-index: 100 !important;
+}
+
+#header h1 a {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 0 0 calc(var(--header-ui-size) / 1.5) !important;
+    box-sizing: border-box !important;
+}
+
+/* 4. 搜索按钮放在第 1 行，第 3 列 */
+#search-top-box {
+    grid-column: 3 / 4 !important;
+    grid-row: 1 / 2 !important;
+    position: static !important;
+    top: auto !important;
+    width: calc(var(--header-ui-size) / 1.5) !important;
+    height: var(--header-ui-size) !important;
+    z-index: 100 !important;
+}
+
+/* 5. 用户按钮放在第 1 行，第 4 列 */
+#login-status {
+    grid-column: 4 / 5 !important;
+    grid-row: 1 / 2 !important;
+    position: static !important;
+    top: auto !important;
+    width: var(--header-ui-size) !important;
+    height: var(--header-ui-size) !important;
+    z-index: 100 !important;
+}
+
+/* 6. top-bar 放在第 2 行，横跨所有列 */
+#top-bar {
+    grid-column: 1 / 5 !important;
+    grid-row: 2 / 3 !important;
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+    height: var(--topbar-height) !important;
+    z-index: 100 !important;
+}
+
+/* 7. 确保下拉菜单能显示 */
+#top-bar > div > ul > li {
+    z-index: 101 !important;
+}
+
+#top-bar > div > ul > li > ul {
+    z-index: 102 !important;
+    background: rgb(var(--dropdown-bg)) !important;
+}
+
+/* 8. 内容区从 header 下方开始 */
 #content-wrap {
+    flex-grow: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
     margin: 0 1rem 0 !important;
-    padding-top: 1rem !important;
+    padding: 1rem 0 0 0 !important;
 }
 
 @media (min-width: 64rem) {
@@ -1465,7 +1525,10 @@ div.rate-box-with-credit-button,
     }
 }
 
-/* 4. bannerContainer 修复（保留，确保主页正常） */
+/* ============================================================
+   主页 bannerContainer 修复（匹配实际 HTML 类名）
+   ============================================================ */
+
 #page-content .bannerContainer {
     display: grid !important;
     grid-template-areas:
@@ -1508,3 +1571,48 @@ div.rate-box-with-credit-button,
 #page-content .bannerContainer .navigator.qq { grid-area: qq !important; }
 #page-content .bannerContainer .navigator.site-rules { grid-area: site-rules !important; }
 #page-content .bannerContainer .navigator.join { grid-area: join !important; }
+
+/* ============================================================
+   主页 announceContainer 修复
+   ============================================================ */
+
+#page-content .announceContainer {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    border: 4px solid rgb(60, 60, 60) !important;
+    align-content: space-between !important;
+}
+
+#page-content .announceContainer .welcome {
+    background-color: rgb(60, 60, 60) !important;
+    color: rgb(220, 220, 220) !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 1.5rem !important;
+    padding: 0.5rem 0.75rem !important;
+    box-sizing: border-box !important;
+}
+
+#page-content .announceContainer .announcement,
+#page-content .announceContainer .more {
+    background-color: rgb(45, 45, 45) !important;
+    color: rgb(220, 220, 220) !important;
+    padding: 0.75rem !important;
+    margin: 0.5rem 0.25rem !important;
+    border-radius: 0.3rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#page-content .announceContainer .archive {
+    background: rgb(60, 60, 60) !important;
+    color: rgb(220, 220, 220) !important;
+    text-align: right !important;
+    width: 100% !important;
+}
+
+#page-content .announceContainer .archive a {
+    padding: 0 1rem !important;
+    color: rgb(220, 220, 220) !important;
+}
