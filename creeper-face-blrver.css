@@ -1768,3 +1768,47 @@ div.rate-box-with-credit-button,
         padding: 1.5rem 0 !important;
     }
 }
+/* ============================================================
+   修复：底部工具栏按钮溢出
+   ============================================================ */
+
+#page-options-container .page-options-bottom {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)) !important;
+    grid-auto-rows: auto !important;
+    gap: 0 !important;
+    width: 100% !important;
+    border: var(--global-border-width) solid rgb(var(--global-border)) !important;
+}
+
+#page-options-container .page-options-bottom a,
+#page-options-container .page-options-bottom a.btn {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0.5rem 0.75rem !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: var(--global-border-width) solid rgb(var(--global-border)) !important;
+    font-size: calc(0.6rem + 0.3vw) !important;
+    text-align: center !important;
+}
+
+/* more-options 按钮不再占用特殊位置 */
+#page-options-container .page-options-bottom a#more-options-button {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    border-left: none !important;
+}
+
+/* 移动端：两列 */
+@media (max-width: 768px) {
+    #page-options-container .page-options-bottom {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
