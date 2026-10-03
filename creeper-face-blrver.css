@@ -1812,3 +1812,61 @@ div.rate-box-with-credit-button,
         grid-template-columns: repeat(2, 1fr) !important;
     }
 }
+/* ============================================================
+   参照 Creeper Face 原版修复底部工具栏
+   ============================================================ */
+
+/* 1. 恢复原生布局（去掉我之前加的 grid/flex 覆盖） */
+#page-options-container .page-options-bottom {
+    display: block !important;
+    border: unset !important;
+    width: auto !important;
+    padding: 0 !important;
+    gap: unset !important;
+    grid-template-columns: unset !important;
+    grid-auto-rows: unset !important;
+}
+
+/* 2. Creeper Face 原版按钮外观：3D 边框 */
+#page-options-container .page-options-bottom a {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
+    flex: initial !important;
+    min-width: unset !important;
+    padding: 0.5rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4) !important;
+    background: rgb(var(--btn-bg)) !important;
+    color: rgb(var(--btn-txt)) !important;
+    font-family: var(--ui-font) !important;
+    font-size: calc(0.6rem + 0.4vw) !important;
+    transition: background var(--global-duration), color var(--global-duration) !important;
+}
+
+/* 3. 悬停：背景变灰，加粗（Creeper Face 原版行为） */
+#page-options-container .page-options-bottom a:hover {
+    background: hsla(0, 0%, 45%, 0.3) !important;
+    font-weight: bold !important;
+}
+
+/* 4. 聚焦：内凹边框效果 */
+#page-options-container .page-options-bottom a:focus {
+    background: rgb(var(--btn-bg)) !important;
+    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black !important;
+    font-weight: bold !important;
+}
+
+/* 5. 取消 more-options 的特殊定位 */
+#page-options-container .page-options-bottom a#more-options-button {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    border-left: 2px solid hsla(0, 0%, 45%, 0.4) !important;
+}
