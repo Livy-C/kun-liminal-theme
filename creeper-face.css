@@ -4443,7 +4443,58 @@ hr {
 
 
 /* ================================================================
-   5. 防御：锁住 #header 的尺寸模型
+   5. Minecraft 风格字体
+   ================================================================ */
+
+/* ══════════════════════════════════════════════════════════════
+   Minecraft 风格字体（全站）
+   ──────────────────────────────────────────────────────────────
+   西文用 @south-paw/typeface-minecraft 的 Minecraft 字形
+   （woff2 只有 2.4 KB）；该字体不含中日韩字形，浏览器会自动回退到
+   字体栈里的下一个 —— 也就是版式自带的**文泉驿点阵宋体**。
+   于是自然得到原版 Minecraft 的观感：西文方块字 + 中文点阵字。
+
+   关于字号：点阵字体只在整数像素下才清晰。版式原本的
+       --global-final-size: min(0.975rem, 0.8rem + 0.2vw)
+   在窄屏会算出 13.93px 这类小数值（实测 565px 宽时就是 13.93px），
+   点阵字会糊掉，所以这里把字号固定成 16px。
+   想换大小的话，请用 8 的倍数（8 / 16 / 24px），别用 15.6px 之类。
+
+   代码块与编辑区仍保留等宽字体（--mono-font / --edit-font）。
+   如果那两处也想换成 Minecraft 风格，用等宽的 Monocraft（MIT 许可）：
+       @font-face { font-family: "Monocraft";
+         src: url("https://cdn.jsdelivr.net/gh/IdreesInc/Monocraft@main/dist/Monocraft-ttf/Monocraft.ttf") format("truetype"); }
+       :root { --mono-font: "Monocraft", "PT Mono", Consolas, monospace;
+               --edit-font: "Monocraft", "Roboto Mono", Consolas, monospace; }
+   ══════════════════════════════════════════════════════════════ */
+@font-face {
+    font-family: "Minecraft";
+    src: url("https://cdn.jsdelivr.net/npm/@south-paw/typeface-minecraft@1.0.0/files/minecraft.woff2") format("woff2"),
+         url("https://cdn.jsdelivr.net/npm/@south-paw/typeface-minecraft@1.0.0/files/minecraft.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* 点阵字体需要整数像素 */
+    --global-font-size: 16px;
+    --global-final-size: var(--global-font-size);
+
+    /* 在苦力怕脸的字体栈前面插进 Minecraft，中文仍由文泉驿兜底 */
+    --header-font: "Minecraft", "Open Sans", "Noto Sans SC", "Noto Sans TC",
+                   Franklin Gothic Medium, Franklin Gothic, ITC Franklin Gothic, Arial, sans-serif;
+    --banner-font: "Minecraft", "WenQuanYi 15",
+                   Franklin Gothic Medium, Franklin Gothic, ITC Franklin Gothic, Arial, sans-serif;
+    --title-font:  "Minecraft", "WenQuanYi 16",
+                   Franklin Gothic Medium, Franklin Gothic, ITC Franklin Gothic, Arial, sans-serif;
+    --body-font:   "Minecraft", "WenQuanYi 16", Arimo, Verdana, Geneva, sans-serif;
+    --ui-font:     "Minecraft", "WenQuanYi 15", Arimo, Verdana, Geneva, sans-serif;
+}
+
+
+/* ================================================================
+   6. 防御：锁住 #header 的尺寸模型
    ----------------------------------------------------------------
    上游版式**不给 #header 设 height**，而是靠 grid-template-rows 的
    5 条轨道把盒子撑到  banner + 2 ×（页眉高 + 顶栏高） 的高度：
@@ -4471,4 +4522,62 @@ hr {
 #header {
     height: auto !important;
     grid-template-rows: auto auto auto var(--header-height) var(--topbar-height);
+}
+
+
+/* ================================================================
+   7. 修复：版头里被不透明底衬盖住的控件
+   ----------------------------------------------------------------
+   #header-extra-div-1 是版头第 1–2 行的底衬 —— 也就是标题、搜索框、
+   顶栏菜单、登录按钮所在的那一整条带子 —— 它带 z-index: 9。
+
+   上游至上主义给它的背景是半透明的（alpha .8 → 1），所以那几个
+   z-index: auto 的控件能透过它隐约看见，像磨砂玻璃。苦力怕脸在覆盖
+   层里把它改成了 rgba(..., 1) 的不透明纯色，于是它们被整个盖住。
+
+   实测：顶栏中心点的最上层元素就是 #header-extra-div-1，
+   桌面端与窄屏端都一样（不是媒体查询问题）。
+   #header h1 自带 z-index: 10 所以幸免 —— 这正是"标题在、顶栏不在"。
+
+   把这几个控件抬到 9 之上即可；层叠上下文仍是 #header(z-index: 10)。
+   ================================================================ */
+#top-bar,
+#search-top-box,
+#login-status {
+    z-index: 11;
+}
+
+
+/* ================================================================
+   8. 版头与横幅文案
+   ================================================================ */
+
+/* ══════════════════════════════════════════════════════════════
+   版头与横幅文案
+   ──────────────────────────────────────────────────────────────
+   为什么要 !important：本文件是通过 @import 加载的，而站点的建站器Pro
+   会在 <head> 里另外注入两段内联 <style>，写死了
+       --logo-image: url("你站logo链接");
+       --header-title: "建站器Pro";
+       --header-subtitle: "描述";
+   内联块排在 @import 之后，普通声明赢不过它，所以只能用 !important。
+
+   顺带说明：--header-subtitle 与 --logo-image 本版式其实**没有引用**
+   （只有 Black Highlighter 系的主题才会用），这里一并清空，是为了以后
+   若换成那类主题时，不会突然冒出一个断掉的占位 logo。
+
+       --header-title    版头标题   → #header h1 a span::before 的 content
+       --banner-title    横幅主标题 → #header h2 span::before 的 content
+       --banner-subtitle 横幅副标题 → #header h2 span::after（闪烁的黄字）
+
+   想改文字就改下面这几行；副标题保留着原文的感叹号（那个 Minecraft
+   启动器风格的闪烁标语），不想要就把「！」去掉。
+   ══════════════════════════════════════════════════════════════ */
+:root {
+    --header-title: "BLOCKROOMS: JAVA EDITION" !important;
+    --header-subtitle: "" !important;
+    --logo-image: none !important;
+
+    --banner-title: "BLOCKROOMS" !important;
+    --banner-subtitle: "方块阈限！" !important;
 }
