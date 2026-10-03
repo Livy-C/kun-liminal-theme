@@ -1,0 +1,825 @@
+@charset "UTF-8";
+
+/* ============================================================
+   BLOCKROOMS: JAVA EDITION
+   基于苦力怕脸 (Creeper Face) 美学版式定制
+   依赖：至上主义 (Suprematism) 美学版式（推荐）
+   作者：你的名字
+   ============================================================ */
+
+
+/* ———— 0. 引入 ———— */
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Micro+5&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+@font-face {
+  font-family: 'WenQuanYi 15';
+  src: url("https://cdn.jsdelivr.net/gh/LemonCat233/LemCat_Web_Fonts@main/WenQuanYi%20Bitmap%20Song%2015px.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'WenQuanYi 16';
+  src: url("https://cdn.jsdelivr.net/gh/LemonCat233/LemCat_Web_Fonts@main/WenQuanYi%20Bitmap%20Song%2016px.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ———— 1. 全局变量 ———— */
+
+:root {
+    /* ===== 回退变量（Suprematism 未加载时使用） ===== */
+    --global-white-color: 248, 248, 248;
+    --global-pale-color: 235, 235, 235;
+    --global-light-color: 180, 180, 180;
+    --global-dark-color: 90, 90, 90;
+    --global-black-color: 30, 30, 30;
+    --global-accent-1: 68, 123, 230;
+    --global-accent-2: 24, 80, 187;
+    --global-accent-3: 23, 24, 120;
+    --alt-color: 221, 102, 17;
+    --warning-color: 193, 44, 50;
+    --accept-color: 20, 169, 32;
+    --neutral-color: 193, 147, 44;
+
+    --global-bg: var(--global-white-color);
+    --global-txt: var(--global-black-color);
+    --light-ui-bg: var(--global-pale-color);
+    --light-ui-txt: var(--global-black-color);
+    --dark-ui-bg: var(--global-dark-color);
+    --dark-ui-txt: var(--global-white-color);
+    --bright-ui-bg: var(--global-accent-2);
+    --bright-ui-txt: var(--dark-ui-txt);
+
+    --global-border: var(--global-light-color);
+
+    --link-primary: var(--global-accent-2);
+    --link-hover: var(--global-accent-1);
+    --link-visited: var(--global-accent-3);
+    --link-newpage: var(--alt-color);
+
+    --header-height: 3rem;
+    --topbar-height: 2rem;
+    --banner-height: 10rem;
+    --dropdown-height: 2rem;
+    --sidebar-width: 15rem;
+    --content-width: 48rem;
+    --header-ui-size: var(--header-height);
+    --user-icon-padding: 0.5rem;
+    --user-drop-width: 9rem;
+    --user-drop-height: 3rem;
+    --global-border-width: 0.1rem;
+    --topbar-border-width: var(--global-border-width);
+    --dropdown-border-width: var(--global-border-width);
+    --global-font-size: 0.975rem;
+    --global-final-size: min(var(--global-font-size), calc(0.8rem + 0.2vw));
+    --header-title-size: calc(0.5rem + 1.6vw);
+    --topbar-size: calc(0.5rem + 0.5vw);
+    --dropdown-size: var(--topbar-size);
+    --banner-title-size: calc(2.5rem + 3vw);
+    --banner-subtitle-size: 1rem;
+    --rate-height: calc(var(--global-font-size) * 1.5);
+    --toc-min-width: 12.5rem;
+    --toc-heading-height: 2rem;
+    --global-duration: 0.4s;
+    --global-hover-duration: 0.2s;
+
+    /* ===== Blockrooms 主色 ===== */
+    --mc-green: 58, 151, 30;
+    --mcbe-green: 191, 183, 85;
+    --mcd-orange: 255, 121, 26;
+    --mcl-cyan: 14, 185, 169;
+    --br-sand: 180, 160, 120;
+
+    /* ===== Blockrooms 版头文本 ===== */
+    --header-title: "BLOCKROOMS: JAVA EDITION";
+    --banner-title: "BLOCKROOMS.";
+    --banner-subtitle: "块室";
+    --header-font: "Open Sans", "Noto Sans SC", "Noto Sans TC", Franklin Gothic Medium, Franklin Gothic, ITC Franklin Gothic, Arial, sans-serif;
+    --banner-font: "WenQuanYi 15", Franklin Gothic Medium, Franklin Gothic, ITC Franklin Gothic, Arial, sans-serif;
+    --body-font: "WenQuanYi 16", Arimo, Verdana, Geneva, sans-serif;
+    --title-font: "WenQuanYi 16", Franklin Gothic Medium, Franklin Gothic, ITC Franklin Gothic, Arial, sans-serif;
+    --ui-font: "WenQuanYi 15", Arimo, Verdana, Geneva, sans-serif;
+    --mono-font: "PT Mono", "Noto Serif SC", "Noto Serif TC", Consolas, monaco, monospace;
+    --edit-font: "Roboto Mono", "Noto Sans SC", "Noto Sans TC", Consolas, monaco, monospace;
+
+    /* ===== Blockrooms 覆盖（在 Suprematism 之后生效） ===== */
+    --global-bg: 55, 55, 55;
+    --link-primary: 121, 192, 90;
+    --link-hover: 80, 122, 50;
+    --link-visited: 191, 183, 85;
+    --link-newpage: 119, 130, 114;
+
+    --topbar-txt: 184, 184, 184;
+    --topbar-hover-bg: var(--topbar-bg);
+    --topbar-hover-txt: 235, 235, 235;
+    --dropdown-hover-bg: var(--mc-green);
+    --search-txt: var(--topbar-txt);
+    --search-hover-bg: var(--dropdown-hover-bg);
+    --search-hover-txt: var(--topbar-hover-txt);
+    --user-hover-bg: var(--topbar-hover-bg);
+    --user-drop-bg: var(--dropdown-bg);
+    --openmenu-hover-bg: var(--dropdown-hover-bg);
+    --sidebar-bg: var(--light-ui-bg);
+    --heading-bg: var(--global-bg);
+
+    --rateup-bg: var(--mc-green);
+    --ratedown-bg: var(--mcd-orange);
+    --cancel-bg: var(--mcbe-green);
+    --info-bg: var(--mcl-cyan);
+
+    --toc-heading-bg: var(--light-ui-bg);
+    --toc-heading-hover-bg: var(--mc-green);
+
+    --box-color-0: var(--mc-green);
+
+    --banner-height: 23rem;
+    --banner-subtitle-size: 1.4rem;
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --banner-height: 9rem;
+    }
+}
+
+
+/* ———— 2. 布局（桌面端） ———— */
+
+@media (min-width: 64rem) {
+    #container {
+        padding-left: var(--sidebar-width);
+    }
+
+    #header {
+        grid-template-columns: 0 1fr auto auto;
+    }
+
+    #header-extra-div-2, #header-extra-div-3 {
+        display: none;
+    }
+
+    #content-wrap {
+        gap: unset;
+        margin: calc(0px - var(--header-height) - var(--topbar-height)) 1rem 0;
+        padding: unset;
+    }
+
+    #side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: initial;
+    }
+
+    #side-bar::before, #side-bar::after {
+        display: none;
+    }
+}
+
+
+/* ———— 3. 许可证区（左下角） ———— */
+
+@media (min-width: 64rem) {
+    #license-area {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 1px;
+        box-sizing: border-box;
+        width: calc(var(--sidebar-width) - 1px);
+        height: 2.5rem;
+        padding: 0;
+        background: rgb(var(--sidebar-bg));
+        border-right: calc(var(--global-border-width) * 2) solid black;
+        box-shadow: 0 0 0 1px inset hsla(0, 0%, 30%, 0.3);
+        font-size: 0;
+    }
+
+    #license-area a {
+        --logo-size: 1.7rem;
+        --logo-gap: 0.4rem;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background:
+            url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iNS41IC0zLjUgNjQgNjQiPjxjaXJjbGUgZmlsbD0iI0ZGRiIgY3g9IjM3Ljc4NSIgY3k9IjI4LjUwMSIgcj0iMjguODM2Ii8+PHBhdGggZD0iTTM3LjQ0MS0zLjVjOC45NTEgMCAxNi41NzIgMy4xMjUgMjIuODU3IDkuMzcyIDMuMDA4IDMuMDA5IDUuMjk1IDYuNDQ4IDYuODU3IDEwLjMxNCAxLjU2MSAzLjg2NyAyLjM0NCA3Ljk3MSAyLjM0NCAxMi4zMTQgMCA0LjM4MS0uNzczIDguNDg2LTIuMzE0IDEyLjMxMy0xLjU0MyAzLjgyOC0zLjgyIDcuMjEtNi44MjggMTAuMTQzLTMuMTIzIDMuMDg1LTYuNjY2IDUuNDQ4LTEwLjYyOSA3LjA4Ni0zLjk2MSAxLjYzOC04LjA1NyAyLjQ1Ny0xMi4yODUgMi40NTdzLTguMjc2LS44MDgtMTIuMTQzLTIuNDI5Yy0zLjg2Ni0xLjYxOC03LjMzMy0zLjk2MS0xMC40LTcuMDI3LTMuMDY3LTMuMDY2LTUuNC02LjUyNC03LTEwLjM3MlM1LjUgMzIuNzY3IDUuNSAyOC41YzAtNC4yMjkuODA5LTguMjk1IDIuNDI4LTEyLjIgMS42MTktMy45MDUgMy45NzItNy40IDcuMDU3LTEwLjQ4NkMyMS4wOC0uMzk0IDI4LjU2NS0zLjUgMzcuNDQxLTMuNXptLjExNiA1Ljc3MmMtNy4zMTQgMC0xMy40NjcgMi41NTMtMTguNDU4IDcuNjU3LTIuNTE1IDIuNTUzLTQuNDQ4IDUuNDE5LTUuOCA4LjZhMjUuMjA0IDI1LjIwNCAwIDAgMC0yLjAyOSA5Ljk3MmMwIDMuNDI5LjY3NSA2LjczNCAyLjAyOSA5LjkxMyAxLjM1MyAzLjE4MyAzLjI4NSA2LjAyMSA1LjggOC41MTYgMi41MTQgMi40OTYgNS4zNTEgNC4zOTkgOC41MTUgNS43MTVhMjUuNjUyIDI1LjY1MiAwIDAgMCA5Ljk0MyAxLjk3MWMzLjQyOCAwIDYuNzUtLjY2NSA5Ljk3My0xLjk5OSAzLjIxOS0xLjMzNSA2LjEyMS0zLjI1NyA4LjcxMy01Ljc3MSA0Ljk5LTQuODc2IDcuNDg0LTEwLjk5IDcuNDg0LTE4LjM0NCAwLTMuNTQzLS42NDgtNi44OTUtMS45NDMtMTAuMDU3LTEuMjkzLTMuMTYyLTMuMTgtNS45OC01LjY1NC04LjQ1OC01LjE0Ni01LjE0My0xMS4zMzUtNy43MTUtMTguNTczLTcuNzE1em0tLjQwMSAyMC45MTVsLTQuMjg3IDIuMjI5Yy0uNDU4LS45NTEtMS4wMTktMS42MTktMS42ODUtMi0uNjY3LS4zOC0xLjI4Ni0uNTcxLTEuODU4LS41NzEtMi44NTYgMC00LjI4NiAxLjg4NS00LjI4NiA1LjY1NyAwIDEuNzE0LjM2MiAzLjA4NCAxLjA4NSA0LjExMy43MjQgMS4wMjkgMS43OTEgMS41NDQgMy4yMDEgMS41NDQgMS44NjcgMCAzLjE4MS0uOTE1IDMuOTQ0LTIuNzQzbDMuOTQyIDJjLS44MzggMS41NjMtMiAyLjc5MS0zLjQ4NiAzLjY4Ni0xLjQ4NC44OTYtMy4xMjMgMS4zNDMtNC45MTQgMS4zNDMtMi44NTcgMC01LjE2My0uODc1LTYuOTE1LTIuNjI5LTEuNzUyLTEuNzUyLTIuNjI4LTQuMTktMi42MjgtNy4zMTMgMC0zLjA0OC44ODYtNS40NjYgMi42NTctNy4yNTcgMS43NzEtMS43OSA0LjAwOS0yLjY4NiA2LjcxNS0yLjY4NiAzLjk2My0uMDAyIDYuOCAxLjU0MSA4LjUxNSA0LjYyN3ptMTguNDU3IDBsLTQuMjI5IDIuMjI5Yy0uNDU3LS45NTEtMS4wMi0xLjYxOS0xLjY4Ni0yLS42NjgtLjM4LTEuMzA3LS41NzEtMS45MTQtLjU3MS0yLjg1NyAwLTQuMjg3IDEuODg1LTQuMjg3IDUuNjU3IDAgMS43MTQuMzYzIDMuMDg0IDEuMDg2IDQuMTEzLjcyMyAxLjAyOSAxLjc4OSAxLjU0NCAzLjIwMSAxLjU0NCAxLjg2NSAwIDMuMTgtLjkxNSAzLjk0MS0yLjc0M2w0IDJjLS44NzUgMS41NjMtMi4wNTcgMi43OTEtMy41NDEgMy42ODZhOS4yMzMgOS4yMzMgMCAwIDEtNC44NTcgMS4zNDNjLTIuODk2IDAtNS4yMDktLjg3NS02Ljk0MS0yLjYyOS0xLjczNi0xLjc1Mi0yLjYwMi00LjE5LTIuNjAyLTcuMzEzIDAtMy4wNDguODg1LTUuNDY2IDIuNjU4LTcuMjU3IDEuNzctMS43OSA0LjAwOC0yLjY4NiA2LjcxMy0yLjY4NiAzLjk2Mi0uMDAyIDYuNzgzIDEuNTQxIDguNDU4IDQuNjI3eiIvPjwvc3ZnPg=="),
+            url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iNS41IC0zLjUgNjQgNjQiPjxjaXJjbGUgZmlsbD0iI0ZGRiIgY3g9IjM3LjYzNyIgY3k9IjI4LjgwNiIgcj0iMjguMjc2Ii8+PHBhdGggZD0iTTM3LjQ0My0zLjVjOC45ODggMCAxNi41NyAzLjA4NSAyMi43NDIgOS4yNTdDNjYuMzkzIDExLjk2NyA2OS41IDE5LjU0OCA2OS41IDI4LjVjMCA4Ljk5MS0zLjA0OSAxNi40NzYtOS4xNDUgMjIuNDU2LTYuNDc2IDYuMzYzLTE0LjExMyA5LjU0NC0yMi45MTIgOS41NDQtOC42NDkgMC0xNi4xNTMtMy4xNDQtMjIuNTE0LTkuNDNDOC42NDQgNDQuNzg0IDUuNSAzNy4yNjIgNS41IDI4LjVjMC04Ljc2MSAzLjE0NC0xNi4zNDIgOS40MjktMjIuNzQyQzIxLjEwMS0uNDE1IDI4LjYwNC0zLjUgMzcuNDQzLTMuNXptLjExNCA1Ljc3MmMtNy4yNzYgMC0xMy40MjggMi41NTMtMTguNDU3IDcuNjU3LTUuMjIgNS4zMzQtNy44MjkgMTEuNTI1LTcuODI5IDE4LjU3MiAwIDcuMDg2IDIuNTkgMTMuMjIgNy43NyAxOC4zOTggNS4xODEgNS4xODIgMTEuMzUyIDcuNzcxIDE4LjUxNCA3Ljc3MSA3LjEyMyAwIDEzLjMzNC0yLjYwNyAxOC42MjktNy44MjggNS4wMjktNC44MzggNy41NDMtMTAuOTUyIDcuNTQzLTE4LjM0MyAwLTcuMjc2LTIuNTUzLTEzLjQ2NS03LjY1Ni0xOC41NzEtNS4xMDQtNS4xMDQtMTEuMjc2LTcuNjU2LTE4LjUxNC03LjY1NnptOC41NzIgMTguMjg1djEzLjA4NWgtMy42NTZ2MTUuNTQyaC05Ljk0NFYzMy42NDNoLTMuNjU2VjIwLjU1N2MwLS41NzIuMi0xLjA1Ny41OTktMS40NTcuNDAxLS4zOTkuODg3LS42IDEuNDU3LS42aDEzLjE0NGMuNTMzIDAgMS4wMS4yIDEuNDI4LjYuNDE3LjQuNjI4Ljg4Ni42MjggMS40NTd6bS0xMy4wODctOC4yMjhjMC0zLjAwOCAxLjQ4NS00LjUxNCA0LjQ1OC00LjUxNHM0LjQ1NyAxLjUwNCA0LjQ1NyA0LjUxNGMwIDIuOTcxLTEuNDg2IDQuNDU3LTQuNDU3IDQuNDU3cy00LjQ1OC0xLjQ4Ni00LjQ1OC00LjQ1N3oiLz48L3N2Zz4="),
+            url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iNS41IC0zLjUgNjQgNjQiPjxjaXJjbGUgZmlsbD0iI0ZGRiIgY3g9IjM2Ljk0NCIgY3k9IjI4LjYzMSIgcj0iMjkuMTA1Ii8+PHBhdGggZD0iTTM3LjQ0My0zLjVjOC45NTEgMCAxNi41MzEgMy4xMDUgMjIuNzQyIDkuMzE1QzY2LjM5MyAxMS45ODcgNjkuNSAxOS41NDggNjkuNSAyOC41YzAgOC45NTQtMy4wNDkgMTYuNDU3LTkuMTQ1IDIyLjUxNC02LjQzNyA2LjMyNC0xNC4wNzYgOS40ODYtMjIuOTEyIDkuNDg2LTguNjQ5IDAtMTYuMTUzLTMuMTQzLTIyLjUxNC05LjQyOUM4LjY0NCA0NC43ODYgNS41IDM3LjI2NCA1LjUgMjguNTAxYzAtOC43MjMgMy4xNDQtMTYuMjg1IDkuNDI5LTIyLjY4NUMyMS4xMzgtLjM5NSAyOC42NDMtMy41IDM3LjQ0My0zLjV6bS4xMTQgNS43NzJjLTcuMjc2IDAtMTMuNDI4IDIuNTcyLTE4LjQ1NyA3LjcxNS01LjIyIDUuMjk2LTcuODI5IDExLjQ2Ny03LjgyOSAxOC41MTMgMCA3LjEyNSAyLjU5IDEzLjI1NyA3Ljc3IDE4LjQgNS4xODEgNS4xODIgMTEuMzUyIDcuNzcxIDE4LjUxNCA3Ljc3MSA3LjEyMyAwIDEzLjMzNC0yLjYwOSAxOC42MjktNy44MjggNS4wMjktNC44NzYgNy41NDMtMTAuOTkgNy41NDMtMTguMzQzIDAtNy4zMTMtMi41NTMtMTMuNDg1LTcuNjU2LTE4LjUxMy01LjA2Ny01LjE0NS0xMS4yMzktNy43MTUtMTguNTE0LTcuNzE1ek0yMy4yNzEgMjMuOTg1Yy42MDktMy45MjQgMi4xODktNi45NjIgNC43NDItOS4xMTQgMi41NTItMi4xNTIgNS42NTYtMy4yMjggOS4zMTQtMy4yMjggNS4wMjcgMCA5LjAyOSAxLjYyIDEyIDQuODU2IDIuOTcxIDMuMjM4IDQuNDU3IDcuMzkxIDQuNDU3IDEyLjQ1NyAwIDQuOTE1LTEuNTQzIDktNC42MjcgMTIuMjU2LTMuMDg4IDMuMjU2LTcuMDg2IDQuODg2LTEyLjAwMiA0Ljg4Ni0zLjYxOSAwLTYuNzQzLTEuMDg1LTkuMzcxLTMuMjU3LTIuNjI5LTIuMTcyLTQuMjA5LTUuMjU3LTQuNzQzLTkuMjU3SDMxLjFjLjE5IDMuODg2IDIuNTMzIDUuODI5IDcuMDI5IDUuODI5IDIuMjQ2IDAgNC4wNTctLjk3MiA1LjQyOC0yLjkxNCAxLjM3My0xLjk0MiAyLjA1OS00LjUzNCAyLjA1OS03Ljc3MSAwLTMuMzkxLS42MjktNS45NzEtMS44ODUtNy43NDMtMS4yNTgtMS43NzEtMy4wNjYtMi42NTctNS40My0yLjY1Ny00LjI2OCAwLTYuNjY3IDEuODg1LTcuMiA1LjY1NmgyLjM0M2wtNi4zNDIgNi4zNDMtNi4zNDMtNi4zNDMgMi41MTIuMDAxeiIvPjwvc3ZnPg==");
+        background-repeat: no-repeat;
+        background-size: var(--logo-size);
+        background-position:
+            calc(var(--logo-gap) * 1.5) center,
+            calc(var(--logo-gap) * 2.5 + var(--logo-size)) center,
+            calc(var(--logo-gap) * 3.5 + var(--logo-size) * 2) center;
+        filter: opacity(0.6);
+    }
+
+    #license-area a::after {
+        content: "3.0";
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: calc(var(--logo-gap) * 5.5 + var(--logo-size) * 3);
+        width: auto;
+        height: 100%;
+        color: white;
+        text-shadow:
+            3px 0 black, -3px 0 black,
+            0 3px black, 0 -3px black,
+            -2px -2px black, 2px -2px black,
+            -2px 2px black, 2px 2px black;
+        font-family: "Micro 5", sans-serif;
+        font-size: var(--logo-size);
+        letter-spacing: 2px;
+    }
+}
+
+
+/* ———— 4. 版头标题 ———— */
+
+#header h1 a span {
+    font-weight: 400;
+}
+
+#header h1 a span::before {
+    color: rgb(var(--topbar-hover-txt));
+}
+
+
+/* ———— 5. 版头背景 ———— */
+
+#header-extra-div-1 {
+    background: linear-gradient(to top,
+        rgba(var(--header-bg), 1),
+        rgba(var(--header-bg), 1)
+    );
+    backdrop-filter: unset;
+    border: unset;
+}
+
+
+/* ———— 6. 用户信息 ———— */
+
+#login-status:is(:hover, :focus, :active)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: calc(50% - 1.2rem / 2);
+    width: 1.2rem;
+    height: calc(var(--global-border-width) * 1.5);
+    background: rgb(var(--mc-green));
+}
+
+#login-status .printuser > a > img.small {
+    border-radius: 50%;
+}
+
+#login-status:is(:hover, :focus, :active) #account-options ul li {
+    background: rgba(var(--user-drop-bg), 1);
+}
+
+
+/* ———— 7. 顶栏 ———— */
+
+#top-bar > div > ul > :is(li, li:hover, li:focus, li.sfhover, li:focus-within) > ul > li a {
+    background: rgba(var(--dropdown-bg), 1);
+}
+
+#top-bar > div > ul > li:is(:hover, :focus, .sfhover, :focus-within) > a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 1.8rem;
+    height: calc(var(--global-border-width) * 1.5);
+    background: rgb(var(--mc-green));
+}
+
+#top-bar > div > ul > li > ul {
+    border: unset;
+}
+
+
+/* ———— 8. 横幅 ———— */
+
+#header h2 {
+    grid-column: 1 / 5;
+    grid-row: 3 / 4;
+    height: var(--banner-height);
+    margin: 0;
+    padding: 0;
+    background-image: url("https://你的图床地址/blockrooms-banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#header h2 span {
+    position: relative;
+}
+
+#header h2 span::before {
+    text-shadow: 0.2rem 0.2rem hsla(0, 0%, 20%, 0.75);
+}
+
+#header h2 span::after {
+    position: absolute;
+    top: calc(50% + 0.2rem);
+    left: clamp(50% + 3vw, min(50% + 10vw, 100% - 5.2rem), 100%);
+    width: max-content;
+    color: yellow;
+    text-shadow: 1px 1px black;
+    font-size: clamp(1rem, 3vw, var(--banner-subtitle-size));
+    letter-spacing: 0.5rem;
+    transform: rotate(-15deg) scale(1);
+    animation: splash-texting 0.5s linear infinite;
+}
+
+@keyframes splash-texting {
+    0%   { transform: rotate(-15deg) scale(1); }
+    25%  { transform: rotate(-15deg) scale(0.9); }
+    50%  { transform: rotate(-15deg) scale(1); }
+    75%  { transform: rotate(-15deg) scale(1.1); }
+    100% { transform: rotate(-15deg) scale(1); }
+}
+
+
+/* ———— 9. 侧栏 ———— */
+
+#side-bar {
+    border-right: calc(var(--global-border-width) * 2) solid black;
+}
+
+#side-bar .side-block.media > div > a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 45px;
+    max-height: 45px;
+    background-image: radial-gradient(white 60%, transparent 0);
+    overflow: hidden;
+}
+
+#side-bar .side-block.media > div > a:nth-child(4) {
+    background-color: rgb(var(--mc-green));
+}
+
+#side-bar .side-block.media > div > a:nth-child(3) {
+    background-color: rgb(var(--mcbe-green));
+}
+
+#side-bar .side-block.media > div > a:nth-child(2) {
+    background-color: rgb(var(--mcd-orange));
+}
+
+#side-bar .side-block.media > div > a:nth-child(1) {
+    background-color: rgb(var(--mcl-cyan));
+}
+
+#side-bar .side-block.media > div > a > img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+}
+
+#side-bar .side-block.media > div > a:nth-child(4) > img {
+    filter: brightness(0) saturate(100%) invert(39%) sepia(97%) saturate(680%) hue-rotate(69deg) brightness(97%) contrast(78%);
+}
+
+#side-bar .side-block.media > div > a:nth-child(3) > img {
+    filter: brightness(0) saturate(100%) invert(74%) sepia(62%) saturate(375%) hue-rotate(12deg) brightness(89%) contrast(83%);
+}
+
+#side-bar .side-block.media > div > a:nth-child(2) > img {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(97%) saturate(1630%) hue-rotate(347deg) brightness(102%) contrast(101%);
+}
+
+#side-bar .side-block.media > div > a:nth-child(1) > img {
+    filter: brightness(0) saturate(100%) invert(66%) sepia(38%) saturate(5211%) hue-rotate(133deg) brightness(93%) contrast(89%);
+}
+
+:is(#side-bar, #interwiki) :is(.heading, .menu-item) {
+    border-bottom: unset;
+}
+
+:is(#side-bar, #interwiki) .heading {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.5rem;
+    font-family: var(--header-font);
+    font-weight: 400;
+}
+
+:is(#side-bar, #interwiki) .heading::before {
+    content: "";
+    display: block;
+    position: relative;
+    width: 0.8rem;
+    height: 0.8rem;
+    background-color: rgb(var(--mc-green));
+}
+
+:is(#side-bar, #interwiki) .menu-item a {
+    border-style: solid;
+    border-width: 2px;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4);
+}
+
+:is(#side-bar, #interwiki) .menu-item a:hover {
+    background: hsla(0, 0%, 45%, 0.3);
+    font-weight: bold;
+}
+
+:is(#side-bar, #interwiki) .menu-item a:focus {
+    background: rgb(var(--menu-bg));
+    border-style: solid;
+    border-width: 2px;
+    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    :is(#side-bar, #interwiki) .menu-item a:is(:hover, :focus) {
+        background: rgb(var(--menu-bg));
+        border-style: solid;
+        border-width: 2px;
+        border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black;
+        font-weight: bold;
+    }
+}
+
+#side-bar .collapsible-block a.collapsible-block-link {
+    padding: 0.5rem 0.5rem;
+    border-style: solid;
+    border-width: 2px;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4);
+    font-family: var(--header-font);
+    font-weight: 400;
+}
+
+#side-bar .collapsible-block a.collapsible-block-link:is(:hover, :focus) {
+    background: rgb(var(--menu-bg));
+    border-style: solid;
+    border-width: 2px;
+    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black;
+    font-weight: bold;
+}
+
+
+/* ———— 10. 页底工具栏 ———— */
+
+#page-options-container .page-options-bottom {
+    border: unset;
+}
+
+.btn:not(.page-rate-widget-box *, #login-status *, .owindow .button-bar > a[onclick*=cleanAll]),
+a.action-area-close,
+.site-tools-box ul.nav.nav-pills a {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4) !important;
+}
+
+.btn:not(.page-rate-widget-box *, #login-status *, .owindow .button-bar > a[onclick*=cleanAll]):hover,
+a.action-area-close:hover,
+.site-tools-box ul.nav.nav-pills a:hover {
+    background: hsla(0, 0%, 45%, 0.3);
+    font-weight: bold !important;
+}
+
+.btn:not(.page-rate-widget-box *, #login-status *, .owindow .button-bar > a[onclick*=cleanAll]):focus,
+a.action-area-close:focus,
+.site-tools-box ul.nav.nav-pills a:focus {
+    background: rgb(var(--btn-bg));
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black !important;
+    font-weight: bold !important;
+}
+
+@media (max-width: 768px) {
+    .btn:not(.page-rate-widget-box *, #login-status *, .owindow .button-bar > a[onclick*=cleanAll]):is(:hover, :focus),
+    a.action-area-close:is(:hover, :focus),
+    .site-tools-box ul.nav.nav-pills a:is(:hover, :focus) {
+        background: rgb(var(--btn-bg));
+        border-style: solid !important;
+        border-width: 2px !important;
+        border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black !important;
+        font-weight: bold !important;
+    }
+}
+
+
+/* ———— 11. 编辑区字体 ———— */
+
+:is(#edit-page-form, #new-post-form) > div:not(.wd-editor-toolbar-panel, .change-textarea-size, .edit-help-34, .checkbox.do-not-notify, #edit-page-captcha, .buttons.alignleft) > textarea:is(#edit-page-textarea, #np-text) {
+    font-family: var(--edit-font);
+    font-size: 15px;
+}
+
+code, .code, .code pre, .code p, tt, .page-source {
+    font-family: var(--edit-font);
+    font-size: 1em;
+}
+
+
+/* ———— 12. 页面功能 ———— */
+
+#page-title {
+    border-bottom: var(--global-border-width) solid rgb(var(--mc-green));
+}
+
+div.page-rate-widget-box, div.rate-box-with-credit-button, #page-content .creditButtonStandalone p {
+    border-bottom: var(--global-border-width) solid rgb(var(--mc-green));
+}
+
+hr {
+    border-top: var(--global-border-width) solid rgb(var(--mc-green));
+}
+
+.yui-navset,
+.yui-navset .yui-nav,
+.yui-navset .yui-navset-top .yui-nav {
+    border: unset;
+}
+
+.yui-navset .yui-content,
+.yui-navset .yui-navset-top .yui-content {
+    background: rgb(var(--global-bg));
+    border: var(--global-border-width) solid hsla(0, 0%, 45%, 0.4);
+}
+
+:is(.yui-navset .yui-nav, .yui-navset .yui-navset-top .yui-nav) li {
+    border-style: solid;
+    border-width: 2px;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4);
+}
+
+:is(.yui-navset .yui-nav, .yui-navset .yui-navset-top .yui-nav) li:is(:hover, :focus) {
+    background: hsla(0, 0%, 45%, 0.3);
+    font-weight: bold;
+}
+
+:is(.yui-navset .yui-nav, .yui-navset .yui-navset-top .yui-nav) li.selected {
+    background: rgb(var(--btn-bg));
+    border-style: solid;
+    border-width: 2px;
+    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black;
+    font-weight: bold;
+}
+
+
+/* ———— 13. 自定义元素 ———— */
+
+.sd-container {
+    --sd-font: var(--body-font);
+    --sd-border: var(--light-block-bg);
+    --sd-bullets: var(--global-txt);
+}
+
+:is(.iets-before, .iets-after) {
+    font-family: var(--title-font);
+    letter-spacing: 2px;
+}
+
+.keycap {
+    color: rgb(var(--light-block-txt));
+    background-color: hsl(0, 0%, 32%);
+    box-shadow: 0 0.1rem 0.05rem black;
+}
+
+:is(blockquote, .blockquote, div.blockquote, [class*=blockquote]) {
+    background: hsl(0, 0%, 32%);
+    border: var(--global-border-width) solid rgb(var(--light-block-bg));
+}
+
+.shadebox {
+    background: rgba(var(--light-block-bg), 0.5);
+    box-shadow: 0 0 0 1rem rgba(var(--light-block-bg), 0.5);
+}
+
+.shadow {
+    box-shadow:
+        0 2px 2px hsla(0, 0%, 0%, 0.7),
+        0 4px 4px hsla(0, 0%, 0%, 0.2);
+}
+
+.dropshadow {
+    box-shadow:
+        0 4px 4px hsla(0, 0%, 0%, 0.4),
+        0 8px 8px hsla(0, 0%, 0%, 0.2);
+}
+
+.light-bg {
+    background: hsl(0, 0%, 32%);
+}
+
+.dark-bg {
+    background: rgb(var(--light-block-bg));
+}
+
+.panel {
+    border-style: solid;
+    border-width: 2px;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4);
+}
+
+.panel-in {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black;
+}
+
+
+/* ———— 14. 草方块 ———— */
+
+.grass-block {
+    --biome-color: var(--mc-green);
+    --dirt: rgb(111, 68, 26);
+    --clay-dots: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgODAwIiB3aWR0aD0iODAwIiBoZWlnaHQ9IjgwMCI+PGcgc3Ryb2tlLXdpZHRoPSIyLjUiIHN0cm9rZT0ibm9uZSIgZmlsbD0iI2E0YThiOCI+PGNpcmNsZSByPSI1LjY1OCIgb3BhY2l0eT0iLjM1Ii8+PGNpcmNsZSByPSI1LjY1OCIgY3g9Ijg4Ljg4OSIgb3BhY2l0eT0iLjM1Ii8+PGNpcmNsZSByPSI1LjY1OCIgY3g9IjE3Ny43NzgiIG9wYWNpdHk9Ii4zNSIvPjxjaXJjbGUgcj0iNS42NTgiIGN4PSIyNjYuNjY3IiBvcGFjaXR5PSIuMzUiLz48Y2lyY2xlIHI9IjUuNjU4IiBjeD0iMzU1LjU1NiIgb3BhY2l0eT0iLjM1Ii8+PGNpcmNsZSByPSI1LjY1OCIgY3g9IjQ0NC40NDQiIG9wYWNpdHk9Ii4zNSIvPjxjaXJjbGUgcj0iNS42NTgiIGN4PSI1MzMuMzMzIiBvcGFjaXR5PSIuMzUiLz48Y2lyY2xlIHI9IjUuNjU4IiBjeD0iNjIyLjIyMiIgb3BhY2l0eT0iLjM1Ii8+PC9nPjwvc3ZnPg==");
+    --color-mix-model: in xyz;
+    padding-top: 5rem;
+    background:
+        repeating-linear-gradient(to right,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 0%,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 2rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 2rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 4rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 60%, var(--dirt) ) 4rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 60%, var(--dirt) ) 6rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 6rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 8rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 50%, var(--dirt) ) 8rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 50%, var(--dirt) ) 10rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 10rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 12rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 12rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 14rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 14rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 16rem,
+            white 0
+        ),
+        repeating-linear-gradient(to right,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 50%, var(--dirt) ) 0%,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 50%, var(--dirt) ) 2rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 2rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 4rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 4rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 6rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 6rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 70%, var(--dirt) ) 8rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 60%, var(--dirt) ) 8rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 60%, var(--dirt) ) 10rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 10rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 80%, var(--dirt) ) 12rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 12rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 14rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 14rem,
+            color-mix(var(--color-mix-model), rgb(var(--biome-color)) 90%, var(--dirt) ) 16rem,
+            white 0
+        ),
+        var(--clay-dots),
+        var(--dirt);
+    background-repeat: repeat-x, repeat-x, repeat;
+    background-size: auto 2rem, auto 2rem, auto 22rem;
+    background-position: 0% 0%, 0% 2rem, center;
+}
+
+.grass-block[data-biome="肥沃"],
+.grass-block[data-biome="fertile"] { --biome-color: 142, 185, 113; }
+
+.grass-block[data-biome="平原"],
+.grass-block[data-biome="plains"] { --biome-color: 145, 189, 89; }
+
+.grass-block[data-biome="寒冷"],
+.grass-block[data-biome="cold"] { --biome-color: 128, 180, 151; }
+
+.grass-block[data-biome="炎热"],
+.grass-block[data-biome="hot"] { --biome-color: 191, 183, 85; }
+
+.grass-block[data-biome="恶地"],
+.grass-block[data-biome="badlands"] { --biome-color: 144, 129, 77; }
+
+.grass-block[data-biome="沼泽"],
+.grass-block[data-biome="swamp"] { --biome-color: 106, 112, 57; }
+
+.grass-block[data-biome="森林"],
+.grass-block[data-biome="forest"] { --biome-color: 121, 192, 90; }
+
+.grass-block[data-biome="黑森林"],
+.grass-block[data-biome="forest-dark"] { --biome-color: 80, 122, 50; }
+
+.grass-block[data-biome="白桦"],
+.grass-block[data-biome="birch"] { --biome-color: 136, 187, 103; }
+
+.grass-block[data-biome="松木"],
+.grass-block[data-biome="pine"] { --biome-color: 134, 184, 127; }
+
+.grass-block[data-biome="樱花"],
+.grass-block[data-biome="cherry"] { --biome-color: 182, 219, 97; }
+
+.grass-block[data-biome="云杉"],
+.grass-block[data-biome="spruce"] { --biome-color: 134, 183, 131; }
+
+.grass-block[data-biome="石岸"],
+.grass-block[data-biome="stone"] { --biome-color: 138, 182, 137; }
+
+.grass-block[data-biome="丛林"],
+.grass-block[data-biome="jungle"] { --biome-color: 89, 201, 60; }
+
+.grass-block[data-biome="方解石"],
+.grass-block[data-biome="calcite"] { --biome-color: 154, 190, 75; }
+
+.grass-block[data-biome="蘑菇岛"],
+.grass-block[data-biome="mushroom-on"] { --biome-color: 114, 90, 133; }
+
+.grass-block[data-biome="蘑菇倒"],
+.grass-block[data-biome="mushroo$m-off"] { --biome-color: 85, 201, 63; }
+
+
+/* ———— 15. 玻璃 ———— */
+
+.glass {
+    --glass-color: 220, 245, 248;
+    --glass-bg-opacity: 0;
+    background-color: rgba(var(--glass-color), var(--glass-bg-opacity));
+    background-image: linear-gradient(225deg,
+        transparent 0%, transparent 3rem,
+        rgba(var(--glass-color), 0.6) 3rem, rgba(var(--glass-color), 0.4) 5rem,
+        transparent 5rem, transparent 7rem,
+        rgba(var(--glass-color), 0.6) 7rem, rgba(var(--glass-color), 0.4) 8rem,
+        transparent 0
+    );
+    background-repeat: no-repeat;
+    border: 0.5rem solid rgba(var(--glass-color), 0.8);
+}
+
+.glass[data-type$="默认"],
+.glass[data-type$="default"] { --glass-color: 220, 245, 248; --glass-bg-opacity: 0; }
+
+.glass[data-type="白色"],
+.glass[data-type="white"] { --glass-color: 255, 255, 255; --glass-bg-opacity: 0.2; }
+
+.glass[data-type="淡灰色"],
+.glass[data-type="light_gray"],
+.glass[data-type="light_grey"] { --glass-color: 170, 170, 170; --glass-bg-opacity: 0.4; }
+
+.glass[data-type="灰色"],
+.glass[data-type="gray"],
+.glass[data-type="grey"] { --glass-color: 80, 80, 80; --glass-bg-opacity: 0.3; }
+
+.glass[data-type="黑色"],
+.glass[data-type="black"] { --glass-color: 20, 20, 20; --glass-bg-opacity: 0.4; }
+
+.glass[data-type="棕色"],
+.glass[data-type="brown"] { --glass-color: 107, 81, 56; --glass-bg-opacity: 0.4; }
+
+.glass[data-type="红色"],
+.glass[data-type="red"] { --glass-color: 200, 30, 30; --glass-bg-opacity: 0.3; }
+
+.glass[data-type="橙色"],
+.glass[data-type="orange"] { --glass-color: 210, 100, 20; --glass-bg-opacity: 0.4; }
+
+.glass[data-type="黄色"],
+.glass[data-type="yellow"] { --glass-color: 200, 190, 40; --glass-bg-opacity: 0.5; }
+
+.glass[data-type="黄绿色"],
+.glass[data-type="lime"] { --glass-color: 150, 220, 30; --glass-bg-opacity: 0.4; }
+
+.glass[data-type="绿色"],
+.glass[data-type="green"] { --glass-color: 90, 130, 50; --glass-bg-opacity: 0.5; }
+
+.glass[data-type="青色"],
+.glass[data-type="cyan"] { --glass-color: 70, 135, 140; --glass-bg-opacity: 0.5; }
+
+.glass[data-type="淡蓝色"],
+.glass[data-type="light-blue"] { --glass-color: 80, 160, 180; --glass-bg-opacity: 0.4; }
+
+.glass[data-type="蓝色"],
+.glass[data-type="blue"] { --glass-color: 60, 80, 160; --glass-bg-opacity: 0.3; }
+
+.glass[data-type="紫色"],
+.glass[data-type="purple"] { --glass-color: 90, 60, 130; --glass-bg-opacity: 0.2; }
+
+.glass[data-type="品红色"],
+.glass[data-type="magenta"] { --glass-color: 180, 70, 190; --glass-bg-opacity: 0.3; }
+
+.glass[data-type="粉色"],
+.glass[data-type="pink"] { --glass-color: 220, 125, 160; --glass-bg-opacity: 0.5; }
