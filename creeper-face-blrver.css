@@ -2,7 +2,7 @@
 
 /* ============================================================
    BLOCKROOMS THEME · DARK
-   基于 Suprematism 原版机制 + 深色定制 + 块室定制
+   基于 Suprematism + Creeper Face，深色 + 块室定制
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
@@ -25,7 +25,6 @@
     font-weight: 400;
     font-display: swap;
 }
-
 @font-face {
     font-family: 'WenQuanYi 16';
     src: url("https://cdn.jsdelivr.net/gh/LemonCat233/LemCat_Web_Fonts@main/WenQuanYi%20Bitmap%20Song%2016px.woff2") format("woff2");
@@ -35,7 +34,7 @@
 
 
 /* ============================================================
-   全局变量（深色）
+   1. 全局变量
    ============================================================ */
 
 :root {
@@ -88,7 +87,6 @@
     --dropdown-txt: 220, 220, 220;
     --dropdown-hover-bg: 58, 151, 30;
     --dropdown-hover-txt: 255, 255, 255;
-    --dropdown-border: 75, 75, 75, .8;
 
     --search-bg: 35, 35, 35;
     --search-txt: 190, 190, 190;
@@ -209,8 +207,6 @@
 
     /* 文本 */
     --header-title: "BLOCKROOMS: JAVA EDITION";
-    --banner-title: "BLOCKROOMS.";
-    --banner-subtitle: "块室";
 
     /* UI 图标 */
     --sidebar-ui: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath paint-order='stroke fill markers' d='M10 57.5h100v5H10zM10 37.5h100v5H10zM10 77.5h100v5H10z'/%3E%3C/svg%3E");
@@ -222,7 +218,6 @@
     --info: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M55 45h10v50H55zM55 25h10v10H55zM45 45h10v10H45zM45 85h10v10H45zM65 85h10v10H65z'/%3E%3C/svg%3E");
 
     /* 字体 */
-    --banner-font: "Alumni Sans Pinstripe", "Zhuque Fangsong (technical preview)", Franklin Gothic Medium, Arial, sans-serif;
     --header-font: "Open Sans", "Noto Sans SC", "Noto Sans TC", Franklin Gothic Medium, Arial, sans-serif;
     --title-font: "WenQuanYi 16", "Sulphur Point", "Noto Sans SC", "Noto Sans TC", Arial, sans-serif;
     --body-font: "WenQuanYi 16", "Barlow", "Noto Sans SC", "Noto Sans TC", Arimo, Verdana, sans-serif;
@@ -234,11 +229,6 @@
     --gray-monochrome: 60, 60, 60;
     --white-monochrome: 220, 220, 220;
     --pale-gray-monochrome: 45, 45, 45;
-    --medium-accent: 58, 151, 30;
-    --light-gray-monochrome: 50, 50, 50;
-    --swatch-primary: 58, 151, 30;
-    --swatch-text-secondary-color: 220, 220, 220;
-    --grid-gap: 1rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -247,7 +237,7 @@
 
 
 /* ============================================================
-   全局元素
+   2. 全局元素
    ============================================================ */
 
 * { scrollbar-width: thin; scrollbar-color: rgb(var(--scrollbar-thumb)) rgba(var(--scrollbar-track)); }
@@ -280,7 +270,6 @@ input.text, textarea, select {
     color: rgb(var(--light-ui-txt));
     border: var(--global-border-width) solid rgb(var(--global-border));
     box-sizing: border-box;
-    transition: border var(--global-duration), box-shadow var(--global-duration);
     font-family: var(--ui-font);
 }
 
@@ -290,13 +279,7 @@ input.text, textarea, select {
     box-shadow: 0 0 0 var(--global-border-width) rgb(var(--bright-ui-bg));
 }
 
-select {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 5rem;
-    padding: 0 0.1rem;
-}
+select { display: inline-flex; justify-content: center; align-items: center; width: 5rem; padding: 0 0.1rem; }
 
 [type=radio], input[type=checkbox] {
     vertical-align: bottom;
@@ -354,51 +337,35 @@ a.action-area-close:is(:hover, :focus),
 
 
 /* ============================================================
-   版头（Suprematism 原版机制）
+   3. 版头（隐藏横幅，2 行 grid：h1 + top-bar）
    ============================================================ */
 
 #header {
     display: grid;
     grid-template-columns: var(--header-ui-size) 1fr auto auto;
-    grid-template-rows: auto auto auto var(--header-height) var(--topbar-height);
-    position: sticky;
-    top: calc(0px - var(--banner-height) - var(--header-height) - var(--topbar-height));
-    z-index: 10;
-    pointer-events: none;
-}
-
-#header > * { pointer-events: auto; }
-
-#header-extra-div-1 {
-    grid-column: 1 / 5;
-    grid-row: 1 / 3;
+    grid-template-rows: var(--header-height) var(--topbar-height);
     position: sticky;
     top: 0;
     width: 100%;
-    height: calc(var(--header-height) + var(--topbar-height));
-    background: rgb(var(--header-bg));
-    z-index: 9;
-    border-bottom: 0.1rem solid rgb(var(--global-border));
+    height: auto;
+    z-index: 100;
 }
-
-#header-extra-div-2, #header-extra-div-3 { pointer-events: none; }
 
 #header h1 {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    position: sticky;
-    top: 0;
-    width: 100%;
     height: var(--header-height);
     margin: 0;
     padding: 0;
-    z-index: 10;
+    background: rgb(var(--header-bg));
+    z-index: 100;
 }
 
 #header h1 a {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     height: 100%;
     padding: 0 0 0 calc(var(--header-ui-size) / 1.5);
     box-sizing: border-box;
@@ -409,75 +376,18 @@ a.action-area-close:is(:hover, :focus),
 #header h1 a span::before {
     content: var(--header-title);
     display: block;
-    color: rgb(var(--topbar-hover-txt)) !important;
+    color: rgb(var(--topbar-hover-txt));
     font-size: var(--header-title-size);
-}
-
-#header h2 {
-    grid-column: 1 / 5;
-    grid-row: 3 / 4;
-    height: var(--banner-height);
-    margin: 0;
-    padding: 0;
-    background-image: url("https://scpsandboxcn.wikidot.com/local--files/secret:lemoncat233-coding-image-bed/%E7%89%88%E5%BC%8F-%E8%8B%A6%E5%8A%9B%E6%80%95%E8%84%B8_aedrian-salazar-6q7UNoz9AjM-unsplash.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#header h2 span {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: fit-content;
-    height: 100%;
-    margin: auto;
-    font-size: 0;
-    font-family: var(--banner-font);
-}
-
-#header h2 span::before {
-    content: var(--banner-title);
-    display: block;
-    color: #ffffff !important;
-    font-size: var(--banner-title-size);
-    text-shadow: 0.2rem 0.2rem hsla(0, 0%, 20%, 0.85) !important;
-}
-
-#header h2 span::after {
-    content: var(--banner-subtitle);
-    position: absolute;
-    top: calc(50% + 0.2rem);
-    left: clamp(50% + 3vw, min(50% + 10vw, 100% - 5.2rem), 100%);
-    width: max-content;
-    color: #ffee66 !important;
-    text-shadow: 1px 1px black;
-    font-size: clamp(1rem, 3vw, var(--banner-subtitle-size));
-    letter-spacing: 0.5rem;
-    transform: rotate(-15deg) scale(1);
-    animation: splash-texting 0.5s linear infinite;
-}
-
-@keyframes splash-texting {
-    0% { transform: rotate(-15deg) scale(1); }
-    25% { transform: rotate(-15deg) scale(0.9); }
-    50% { transform: rotate(-15deg) scale(1); }
-    75% { transform: rotate(-15deg) scale(1.1); }
-    100% { transform: rotate(-15deg) scale(1); }
 }
 
 
 /* ============================================================
-   顶栏
+   4. 顶栏
    ============================================================ */
 
 #top-bar {
     grid-column: 1 / 5;
     grid-row: 2 / 3;
-    position: sticky;
-    top: var(--header-height);
     width: 100%;
     height: var(--topbar-height);
     margin: 0;
@@ -486,11 +396,11 @@ a.action-area-close:is(:hover, :focus),
     color: rgb(var(--topbar-txt));
     font-family: var(--ui-font);
     box-sizing: border-box;
-    z-index: 10;
+    z-index: 100;
 }
 
 #top-bar > div > ul { display: flex; height: var(--topbar-height); max-width: var(--content-width); margin: 0 auto; }
-#top-bar > div > ul > li { flex-grow: 1; flex-basis: min-content; position: relative; margin: 0; padding: 0; list-style: none; }
+#top-bar > div > ul > li { flex-grow: 1; flex-basis: min-content; position: relative; margin: 0; padding: 0; list-style: none; z-index: 101; }
 
 #top-bar > div > ul > li > a {
     display: flex;
@@ -521,7 +431,6 @@ a.action-area-close:is(:hover, :focus),
     display: flex;
     flex-direction: column;
     justify-content: center;
-    visibility: visible;
     position: absolute;
     top: 100%;
     left: 0;
@@ -532,7 +441,9 @@ a.action-area-close:is(:hover, :focus),
     color: rgb(var(--dropdown-txt));
     border: unset;
     box-sizing: border-box;
-    backdrop-filter: blur(0.1rem);
+    background: rgb(var(--dropdown-bg));
+    z-index: 102;
+    visibility: hidden;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--global-duration);
@@ -544,6 +455,7 @@ a.action-area-close:is(:hover, :focus),
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    transition: opacity var(--global-hover-duration);
 }
 
 #top-bar > div > ul > li > ul > li { position: static; width: auto; margin: 0; padding: 0; border: unset; }
@@ -560,31 +472,30 @@ a.action-area-close:is(:hover, :focus),
 
 #top-bar > div > ul > :is(li, li:hover, li:focus, li.sfhover, li:focus-within) > ul > li > a {
     display: block;
-    place-content: center;
     width: 100%;
     height: var(--dropdown-height);
     padding: 0 0.5rem;
     font-size: var(--dropdown-size);
     white-space: nowrap;
     text-align: center;
+    line-height: var(--dropdown-height);
 }
 
 #top-bar .mobile-top-bar { display: none; }
 
 
 /* ============================================================
-   搜索与用户
+   5. 搜索与用户
    ============================================================ */
 
 #search-top-box {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
-    position: sticky;
-    top: 0;
+    position: relative;
     width: calc(var(--header-ui-size) / 1.5);
     height: var(--header-ui-size);
     background: rgb(var(--search-bg));
-    z-index: 10;
+    z-index: 100;
 }
 
 #search-top-box:is(:hover, :focus) { background: rgb(var(--search-hover-bg)); }
@@ -620,14 +531,14 @@ a.action-area-close:is(:hover, :focus),
 #login-status {
     grid-column: 4 / 5;
     grid-row: 1 / 2;
-    position: sticky;
-    top: 0;
+    position: relative;
     width: var(--header-ui-size);
     height: var(--header-ui-size);
     background: rgb(var(--user-bg));
     font-size: 0;
     cursor: pointer;
-    z-index: 10;
+    overflow: visible;
+    z-index: 100;
 }
 
 #login-status:is(:hover, :focus, :active) { background: rgb(var(--user-hover-bg)); }
@@ -643,7 +554,7 @@ a.action-area-close:is(:hover, :focus),
     background: rgb(var(--mc-green));
 }
 
-#login-status .printuser { display: block; width: 100%; height: 100%; font-size: 0; }
+#login-status .printuser { display: block; position: relative; width: 100%; height: 100%; font-size: 0; }
 
 #login-status .printuser > a {
     position: absolute;
@@ -655,7 +566,6 @@ a.action-area-close:is(:hover, :focus),
 }
 
 #login-status .printuser > a > img.small {
-    padding: 0;
     width: calc(var(--header-ui-size) - var(--user-icon-padding) * 2);
     height: calc(var(--header-ui-size) - var(--user-icon-padding) * 2);
     box-sizing: border-box;
@@ -672,17 +582,21 @@ a.action-area-close:is(:hover, :focus),
     width: calc(var(--user-drop-width) * 2);
     height: calc(var(--user-drop-height) * 3);
     border: none;
-    pointer-events: none;
+    z-index: 200;
+    visibility: hidden;
     opacity: 0;
+    pointer-events: none;
     transition: opacity var(--global-duration);
 }
 
-#login-status:is(:hover, :focus, :active) #account-options {
-    pointer-events: auto;
+#login-status:is(:hover, :focus, :focus-within) #account-options {
+    visibility: visible;
     opacity: 1;
+    pointer-events: auto;
+    transition: opacity var(--global-hover-duration);
 }
 
-#login-status:is(:hover, :focus, :active) #account-options ul {
+#login-status:is(:hover, :focus, :focus-within) #account-options ul {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(2, 1fr);
@@ -690,19 +604,19 @@ a.action-area-close:is(:hover, :focus),
     height: 100%;
 }
 
-#login-status:is(:hover, :focus, :active) #account-options ul li {
+#login-status:is(:hover, :focus, :focus-within) #account-options ul li {
     margin: 0;
     padding: 0;
     background: rgb(var(--user-drop-bg));
     color: rgb(var(--user-drop-txt));
 }
 
-#login-status:is(:hover, :focus, :active) #account-options ul li:is(:hover, :focus, :active) {
+#login-status:is(:hover, :focus, :focus-within) #account-options ul li:is(:hover, :focus, :active) {
     background-color: rgb(var(--user-hover-drop-bg));
     color: rgb(var(--user-hover-drop-txt));
 }
 
-#login-status:is(:hover, :focus, :active) #account-options ul li a {
+#login-status:is(:hover, :focus, :focus-within) #account-options ul li a {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -741,19 +655,20 @@ a.action-area-close:is(:hover, :focus),
 
 
 /* ============================================================
-   内容区（关键：负 margin 只拉 header+topbar）
+   6. 内容区
    ============================================================ */
 
 #content-wrap {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    margin: calc(0px - var(--header-height) - var(--topbar-height)) 1rem 0;
+    margin: 0 1rem 0;
+    padding: 1rem 0 0 0;
 }
 
 
 /* ============================================================
-   侧栏
+   7. 侧栏
    ============================================================ */
 
 #side-bar {
@@ -771,7 +686,6 @@ a.action-area-close:is(:hover, :focus),
     overflow-y: scroll;
     z-index: 11;
     direction: rtl;
-    scrollbar-width: thin;
     box-sizing: border-box;
     background: rgb(var(--sidebar-bg));
     font-family: var(--ui-font);
@@ -879,22 +793,15 @@ a.action-area-close:is(:hover, :focus),
     border-color: hsla(0, 0%, 30%, 0.6) black black hsla(0, 0%, 30%, 0.6);
 }
 
-:is(#side-bar, #interwiki) .menu-item a:hover {
+:is(#side-bar, #interwiki) .menu-item a:is(:hover, :focus) {
     background: rgb(var(--menu-hover-bg));
     color: rgb(var(--menu-hover-txt));
-    font-weight: bold;
-}
-
-:is(#side-bar, #interwiki) .menu-item a:focus {
-    background: rgb(var(--menu-hover-bg));
-    color: rgb(var(--menu-hover-txt));
-    border-color: black hsla(0, 0%, 30%, 0.6) hsla(0, 0%, 30%, 0.6) black;
     font-weight: bold;
 }
 
 #side-bar .collapsible-block a.collapsible-block-link {
     display: block;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
     background: rgb(var(--heading-bg));
     color: rgb(var(--heading-txt));
     font-family: var(--header-font);
@@ -947,7 +854,7 @@ a.action-area-close:is(:hover, :focus),
 
 
 /* ============================================================
-   页面内容
+   8. 页面内容
    ============================================================ */
 
 #main-content {
@@ -981,7 +888,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
     line-height: 1.25;
 }
-
 h1 { font-size: 1.8rem; }
 h2 { font-size: 1.6rem; }
 h3 { font-size: 1.4rem; }
@@ -1008,7 +914,6 @@ hr {
 }
 
 code, .code, .code pre, .code p, tt, .page-source { font-family: var(--edit-font); font-size: 1em; }
-
 .code {
     margin: 1rem 0;
     padding: 0 1rem;
@@ -1046,7 +951,6 @@ table:is(.wiki-content-table, .page-compare, table.form.grid) {
 .dropshadow { box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, .6); }
 .light-bg { background: rgb(var(--light-block-bg)); color: rgb(var(--light-block-txt)); }
 .dark-bg { background: rgb(var(--dark-block-bg)); color: rgb(var(--dark-block-txt)); }
-
 .panel { border-style: solid; border-width: 2px; border-color: hsla(0, 0%, 30%, 0.6) black black hsla(0, 0%, 30%, 0.6); }
 .panel-in { border-style: solid; border-width: 2px; border-color: black hsla(0, 0%, 30%, 0.6) hsla(0, 0%, 30%, 0.6) black; }
 
@@ -1057,7 +961,6 @@ table:is(.wiki-content-table, .page-compare, table.form.grid) {
     box-shadow: 0 0.1rem 0.05rem black;
 }
 
-/* 评分 */
 div.page-rate-widget-box,
 div.rate-box-with-credit-button,
 #page-content .creditButtonStandalone p {
@@ -1074,7 +977,6 @@ div.rate-box-with-credit-button,
     box-shadow: unset;
 }
 
-/* tabview */
 .yui-navset { display: flex; flex-direction: column; margin: 1rem 0; padding: 0; max-width: 100%; border: var(--global-border-width) solid rgb(var(--global-border)); }
 .yui-navset .yui-content { background: rgb(var(--global-bg)); padding: 0 1rem; }
 .yui-navset .yui-nav li { border-style: solid; border-width: 2px; border-color: hsla(0, 0%, 30%, 0.6) black black hsla(0, 0%, 30%, 0.6); }
@@ -1083,7 +985,57 @@ div.rate-box-with-credit-button,
 
 
 /* ============================================================
-   页脚
+   9. 底部工具栏（参照 Creeper Face 原版：3D 边框）
+   ============================================================ */
+
+#page-options-container .page-options-bottom {
+    display: block !important;
+    border: unset !important;
+    width: auto !important;
+    padding: 0 !important;
+}
+
+#page-options-container .page-options-bottom a {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
+    padding: 0.5rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4) !important;
+    background: rgb(var(--btn-bg)) !important;
+    color: rgb(var(--btn-txt)) !important;
+    font-family: var(--ui-font) !important;
+    font-size: calc(0.6rem + 0.4vw) !important;
+    transition: background var(--global-duration), color var(--global-duration) !important;
+}
+
+#page-options-container .page-options-bottom a:hover {
+    background: hsla(0, 0%, 45%, 0.3) !important;
+    font-weight: bold !important;
+}
+
+#page-options-container .page-options-bottom a:focus {
+    background: rgb(var(--btn-bg)) !important;
+    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black !important;
+    font-weight: bold !important;
+}
+
+#page-options-container .page-options-bottom a#more-options-button {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    border-left: 2px solid hsla(0, 0%, 45%, 0.4) !important;
+}
+
+
+/* ============================================================
+   10. 页脚
    ============================================================ */
 
 #footer {
@@ -1117,19 +1069,12 @@ div.rate-box-with-credit-button,
 
 
 /* ============================================================
-   桌面端
+   11. 桌面端
    ============================================================ */
 
 @media (min-width: 64rem) {
     #container { padding-left: var(--sidebar-width); }
     #header { grid-template-columns: 0 1fr auto auto; }
-    #header-extra-div-2, #header-extra-div-3 { display: none; }
-
-    #content-wrap {
-        gap: unset;
-        margin: calc(0px - var(--header-height) - var(--topbar-height)) 1rem 0;
-        padding: unset;
-    }
 
     #side-bar {
         position: fixed;
@@ -1142,10 +1087,6 @@ div.rate-box-with-credit-button,
     #side-bar::before, #side-bar::after { display: none; }
 
     #license-area {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
         position: fixed;
         bottom: 0;
         left: 1px;
@@ -1199,7 +1140,7 @@ div.rate-box-with-credit-button,
 
 
 /* ============================================================
-   编辑器
+   12. 编辑器
    ============================================================ */
 
 :is(#edit-page-form, #new-post-form) > div:not(.wd-editor-toolbar-panel, .change-textarea-size, .edit-help-34, .checkbox.do-not-notify, #edit-page-captcha, .buttons.alignleft) > textarea:is(#edit-page-textarea, #np-text) {
@@ -1214,7 +1155,7 @@ div.rate-box-with-credit-button,
 
 
 /* ============================================================
-   弹窗
+   13. 弹窗
    ============================================================ */
 
 #odialog-container[style*=block] {
@@ -1244,21 +1185,20 @@ div.rate-box-with-credit-button,
 
 
 /* ============================================================
-   自定义元素
+   14. 自定义元素
    ============================================================ */
 
 .bblock { background-color: rgb(var(--global-txt)); }
 .bblock:is(:hover, :focus-within) { background-color: rgb(var(--global-txt)); color: rgb(var(--global-bg)); }
 .dblock { background-color: currentColor; }
 .dblock:is(:hover, :focus-within) { background-color: transparent; }
-
 .footer-wikiwalk-nav { font-family: var(--ui-font); font-size: 0.8rem; }
 .sd-container { --sd-font: var(--body-font); --sd-border: var(--light-block-bg); --sd-bullets: var(--global-txt); }
 :is(.iets-before, .iets-after) { font-family: var(--title-font); letter-spacing: 2px; }
 
 
 /* ============================================================
-   草方块
+   15. 草方块
    ============================================================ */
 
 .grass-block {
@@ -1298,14 +1238,17 @@ div.rate-box-with-credit-button,
 
 
 /* ============================================================
-   主页兼容
+   16. 主页兼容（bannerContainer / announceContainer / recentPages / tools）
    ============================================================ */
 
 #page-content .bannerContainer {
     display: grid;
-    grid-template-areas: "welcome welcome welcome" "discord faq join";
+    grid-template-areas:
+        "welcome welcome welcome"
+        "qq site-rules join";
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 3%;
+    grid-row-gap: 1rem;
 }
 
 #page-content .bannerContainer .welcome {
@@ -1314,6 +1257,7 @@ div.rate-box-with-credit-button,
     color: rgb(var(--white-monochrome));
     font-style: italic;
     padding: 1rem;
+    border-radius: 0.5rem;
 }
 
 #page-content .bannerContainer .navigator {
@@ -1322,6 +1266,12 @@ div.rate-box-with-credit-button,
     border-radius: 0 0 1rem 1rem;
     height: min-content;
     margin: 0 0 4rem 0;
+    transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#page-content .bannerContainer .navigator:hover,
+#page-content .bannerContainer .navigator:active {
+    margin: 0 0 1rem 0;
 }
 
 #page-content .bannerContainer .navigator a {
@@ -1331,11 +1281,19 @@ div.rate-box-with-credit-button,
     color: rgb(var(--white-monochrome));
     font-size: 1.25rem;
     font-weight: bold;
+    text-decoration: none;
+    transition: padding 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#page-content .bannerContainer .discord { grid-area: discord; }
-#page-content .bannerContainer .faq { grid-area: faq; }
-#page-content .bannerContainer .join { grid-area: join; }
+#page-content .bannerContainer .navigator a:hover,
+#page-content .bannerContainer .navigator a:active {
+    text-decoration: none;
+    padding: 2rem 0;
+}
+
+#page-content .bannerContainer .navigator.qq { grid-area: qq; }
+#page-content .bannerContainer .navigator.site-rules { grid-area: site-rules; }
+#page-content .bannerContainer .navigator.join { grid-area: join; }
 
 #page-content .announceContainer {
     display: flex;
@@ -1351,12 +1309,39 @@ div.rate-box-with-credit-button,
     width: 100%;
     text-align: center;
     font-size: 1.5rem;
-    padding: 0 0.75rem;
+    padding: 0.5rem 0.75rem;
+    box-sizing: border-box;
+}
+
+#page-content .announceContainer .announcement,
+#page-content .announceContainer .more {
+    background-color: rgb(var(--pale-gray-monochrome));
+    color: rgb(var(--white-monochrome));
+    padding: 0.75rem;
+    margin: 0.5rem 0.25rem;
+    border-radius: 0.3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#page-content .announceContainer .archive {
+    background: rgb(var(--gray-monochrome));
+    color: rgb(var(--white-monochrome));
+    text-align: right;
+    width: 100%;
+}
+
+#page-content .announceContainer .archive a {
+    padding: 0 1rem;
+    color: rgb(var(--white-monochrome));
 }
 
 #page-content .recentPages {
     display: grid;
-    grid-template-areas: "translation original" "featureLevelO featureTaleO" "featureLevelT featureTaleT";
+    grid-template-areas:
+        "translation original"
+        "featureLevelO featureTaleO"
+        "featureLevelT featureTaleT";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-row-gap: 1rem;
@@ -1386,7 +1371,7 @@ div.rate-box-with-credit-button,
 
 
 /* ============================================================
-   移动端
+   17. 移动端
    ============================================================ */
 
 @media only screen and (max-width: 768px) {
@@ -1400,11 +1385,6 @@ div.rate-box-with-credit-button,
     :is(.image-block, .scp-image-block).block-left,
     :is(.image-block, .scp-image-block).block-right { margin: .5rem auto; float: unset; }
 
-    #page-options-container .page-options-bottom {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, auto);
-    }
-
     #page-content .recentPages {
         grid-template-areas: "translation" "original" "featureLevelO" "featureTaleO" "featureLevelT" "featureTaleT";
         grid-template-columns: 1fr;
@@ -1412,461 +1392,15 @@ div.rate-box-with-credit-button,
         grid-row-gap: 1rem;
     }
 
+    #page-content .bannerContainer .navigator {
+        margin: 0 0 2rem 0;
+    }
+    #page-content .bannerContainer .navigator:hover {
+        margin: 0;
+    }
     #page-content .bannerContainer .navigator a { font-size: 1.1rem; }
-    #page-content .bannerContainer .navigator { margin: 0 0 2rem 0; }
-}
-
-/* ============================================================
-   最终修复：隐藏横幅 + 顶栏吸附 + 主页布局
-   ============================================================ */
-
-/* 1. 隐藏横幅及背景层 */
-#header h2 {
-    display: none !important;
-}
-
-#header-extra-div-1 {
-    display: none !important;
-}
-
-/* 2. header 改成 2 行 grid，整体 sticky 在顶部 */
-#header {
-    display: grid !important;
-    grid-template-columns: var(--header-ui-size) 1fr auto auto !important;
-    grid-template-rows: var(--header-height) var(--topbar-height) !important;
-    position: sticky !important;
-    top: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    z-index: 100 !important;
-    pointer-events: auto !important;
-}
-
-/* 3. h1 放在第 1 行，第 2 列 */
-#header h1 {
-    grid-column: 2 / 3 !important;
-    grid-row: 1 / 2 !important;
-    position: static !important;
-    top: auto !important;
-    height: var(--header-height) !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: rgb(var(--header-bg)) !important;
-    z-index: 100 !important;
-}
-
-#header h1 a {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 100% !important;
-    height: 100% !important;
-    padding: 0 0 0 calc(var(--header-ui-size) / 1.5) !important;
-    box-sizing: border-box !important;
-}
-
-/* 4. 搜索按钮放在第 1 行，第 3 列 */
-#search-top-box {
-    grid-column: 3 / 4 !important;
-    grid-row: 1 / 2 !important;
-    position: static !important;
-    top: auto !important;
-    width: calc(var(--header-ui-size) / 1.5) !important;
-    height: var(--header-ui-size) !important;
-    z-index: 100 !important;
-}
-
-/* 5. 用户按钮放在第 1 行，第 4 列 */
-#login-status {
-    grid-column: 4 / 5 !important;
-    grid-row: 1 / 2 !important;
-    position: static !important;
-    top: auto !important;
-    width: var(--header-ui-size) !important;
-    height: var(--header-ui-size) !important;
-    z-index: 100 !important;
-}
-
-/* 6. top-bar 放在第 2 行，横跨所有列 */
-#top-bar {
-    grid-column: 1 / 5 !important;
-    grid-row: 2 / 3 !important;
-    position: static !important;
-    top: auto !important;
-    width: 100% !important;
-    height: var(--topbar-height) !important;
-    z-index: 100 !important;
-}
-
-/* 7. 确保下拉菜单能显示 */
-#top-bar > div > ul > li {
-    z-index: 101 !important;
-}
-
-#top-bar > div > ul > li > ul {
-    z-index: 102 !important;
-    background: rgb(var(--dropdown-bg)) !important;
-}
-
-/* 8. 内容区从 header 下方开始 */
-#content-wrap {
-    flex-grow: 1 !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin: 0 1rem 0 !important;
-    padding: 1rem 0 0 0 !important;
-}
-
-@media (min-width: 64rem) {
-    #content-wrap {
-        gap: unset !important;
-        margin: 0 1rem 0 !important;
-        padding: 1rem 0 0 0 !important;
-    }
-}
-
-/* ============================================================
-   主页 bannerContainer 修复（匹配实际 HTML 类名）
-   ============================================================ */
-
-#page-content .bannerContainer {
-    display: grid !important;
-    grid-template-areas:
-        "welcome welcome welcome"
-        "qq site-rules join" !important;
-    grid-template-columns: 1fr 1fr 1fr !important;
-    grid-column-gap: 3% !important;
-    grid-row-gap: 1rem !important;
-}
-
-#page-content .bannerContainer .welcome {
-    grid-area: welcome !important;
-    display: block !important;
-    background-color: rgb(60, 60, 60) !important;
-    color: rgb(220, 220, 220) !important;
-    font-style: italic !important;
-    padding: 1rem !important;
-    border-radius: 0.5rem !important;
-    visibility: visible !important;
-}
-
-#page-content .bannerContainer .navigator {
-    display: flex !important;
-    background-color: rgb(60, 60, 60) !important;
-    border-radius: 0 0 1rem 1rem !important;
-    height: min-content !important;
-    margin: 0 !important;
-    visibility: visible !important;
-}
-
-#page-content .bannerContainer .navigator a {
-    padding: 0.75rem 0 !important;
-    width: 100% !important;
-    text-align: center !important;
-    color: rgb(220, 220, 220) !important;
-    font-size: 1.25rem !important;
-    font-weight: bold !important;
-}
-
-#page-content .bannerContainer .navigator.qq { grid-area: qq !important; }
-#page-content .bannerContainer .navigator.site-rules { grid-area: site-rules !important; }
-#page-content .bannerContainer .navigator.join { grid-area: join !important; }
-
-/* ============================================================
-   主页 announceContainer 修复
-   ============================================================ */
-
-#page-content .announceContainer {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    border: 4px solid rgb(60, 60, 60) !important;
-    align-content: space-between !important;
-}
-
-#page-content .announceContainer .welcome {
-    background-color: rgb(60, 60, 60) !important;
-    color: rgb(220, 220, 220) !important;
-    font-weight: bold !important;
-    width: 100% !important;
-    text-align: center !important;
-    font-size: 1.5rem !important;
-    padding: 0.5rem 0.75rem !important;
-    box-sizing: border-box !important;
-}
-
-#page-content .announceContainer .announcement,
-#page-content .announceContainer .more {
-    background-color: rgb(45, 45, 45) !important;
-    color: rgb(220, 220, 220) !important;
-    padding: 0.75rem !important;
-    margin: 0.5rem 0.25rem !important;
-    border-radius: 0.3rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-#page-content .announceContainer .archive {
-    background: rgb(60, 60, 60) !important;
-    color: rgb(220, 220, 220) !important;
-    text-align: right !important;
-    width: 100% !important;
-}
-
-#page-content .announceContainer .archive a {
-    padding: 0 1rem !important;
-    color: rgb(220, 220, 220) !important;
-}
-/* ============================================================
-   最终合并修复
-   ============================================================ */
-
-/* --- 1. 用户下拉菜单定位 --- */
-#login-status {
-    position: relative !important;
-    top: auto !important;
-    overflow: visible !important;
-}
-
-#search-top-box {
-    position: relative !important;
-    top: auto !important;
-}
-
-#login-status .printuser {
-    position: relative !important;
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-#login-status .printuser > a {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    padding: var(--user-icon-padding) !important;
-    box-sizing: border-box !important;
-}
-
-#login-status .printuser > a > img.small {
-    width: calc(var(--header-ui-size) - var(--user-icon-padding) * 2) !important;
-    height: calc(var(--header-ui-size) - var(--user-icon-padding) * 2) !important;
-    border-radius: 50% !important;
-}
-
-#login-status #account-options {
-    position: absolute !important;
-    top: 100% !important;
-    right: 0 !important;
-    left: auto !important;
-    width: calc(var(--user-drop-width) * 2) !important;
-    height: calc(var(--user-drop-height) * 3) !important;
-    z-index: 200 !important;
-    pointer-events: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transition: opacity var(--global-duration) !important;
-}
-
-#login-status:is(:hover, :focus, :focus-within) #account-options {
-    pointer-events: auto !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transition: opacity var(--global-hover-duration) !important;
-}
-
-/* --- 2. 顶栏导航下拉动画 --- */
-#top-bar > div > ul > li > ul {
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    transition: opacity var(--global-duration) !important;
-}
-
-#top-bar > div > ul > li:is(:hover, :focus, .sfhover, :focus-within) > ul {
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transition: opacity var(--global-hover-duration) !important;
-}
-
-/* --- 3. 主页导航按钮下拉动画 --- */
-#page-content .bannerContainer .navigator {
-    margin: 0 0 4rem 0 !important;
-    transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-#page-content .bannerContainer .navigator:hover,
-#page-content .bannerContainer .navigator:active {
-    margin: 0 0 1rem 0 !important;
-}
-
-#page-content .bannerContainer .navigator a {
-    padding: 0.5rem 0 !important;
-    transition: padding 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-#page-content .bannerContainer .navigator a:hover,
-#page-content .bannerContainer .navigator a:active {
-    text-decoration: none !important;
-    padding: 2rem 0 !important;
-}
-
-@media (max-width: 767px) {
-    #page-content .bannerContainer .navigator {
-        margin: 0 0 2rem 0 !important;
-    }
-    #page-content .bannerContainer .navigator:hover {
-        margin: 0 !important;
-    }
-    #page-content .bannerContainer .navigator a {
-        font-size: 1.1rem !important;
-    }
     #page-content .bannerContainer .navigator a:hover,
     #page-content .bannerContainer .navigator a:active {
-        padding: 1.5rem 0 !important;
+        padding: 1.5rem 0;
     }
-}
-/* ============================================================
-   恢复主页导航按钮的下拉动画
-   ============================================================ */
-
-#page-content .bannerContainer .navigator {
-    margin: 0 0 4rem 0 !important;
-    transition: margin 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-#page-content .bannerContainer .navigator:hover,
-#page-content .bannerContainer .navigator:active {
-    margin: 0 0 1rem 0 !important;
-}
-
-#page-content .bannerContainer .navigator a {
-    padding: 0.5rem 0 !important;
-    transition: padding 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-#page-content .bannerContainer .navigator a:hover,
-#page-content .bannerContainer .navigator a:active {
-    text-decoration: none !important;
-    padding: 2rem 0 !important;
-}
-
-@media (max-width: 767px) {
-    #page-content .bannerContainer .navigator {
-        margin: 0 0 2rem 0 !important;
-    }
-    #page-content .bannerContainer .navigator:hover {
-        margin: 0 !important;
-    }
-    #page-content .bannerContainer .navigator a {
-        font-size: 1.1rem !important;
-    }
-    #page-content .bannerContainer .navigator a:hover,
-    #page-content .bannerContainer .navigator a:active {
-        padding: 1.5rem 0 !important;
-    }
-}
-/* ============================================================
-   修复：底部工具栏按钮溢出
-   ============================================================ */
-
-#page-options-container .page-options-bottom {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)) !important;
-    grid-auto-rows: auto !important;
-    gap: 0 !important;
-    width: 100% !important;
-    border: var(--global-border-width) solid rgb(var(--global-border)) !important;
-}
-
-#page-options-container .page-options-bottom a,
-#page-options-container .page-options-bottom a.btn {
-    display: inline-flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding: 0.5rem 0.75rem !important;
-    box-sizing: border-box !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-    border-left: none !important;
-    border-right: none !important;
-    border-top: none !important;
-    border-bottom: var(--global-border-width) solid rgb(var(--global-border)) !important;
-    font-size: calc(0.6rem + 0.3vw) !important;
-    text-align: center !important;
-}
-
-/* more-options 按钮不再占用特殊位置 */
-#page-options-container .page-options-bottom a#more-options-button {
-    grid-column: auto !important;
-    grid-row: auto !important;
-    border-left: none !important;
-}
-
-/* 移动端：两列 */
-@media (max-width: 768px) {
-    #page-options-container .page-options-bottom {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
-}
-/* ============================================================
-   参照 Creeper Face 原版修复底部工具栏
-   ============================================================ */
-
-/* 1. 恢复原生布局（去掉我之前加的 grid/flex 覆盖） */
-#page-options-container .page-options-bottom {
-    display: block !important;
-    border: unset !important;
-    width: auto !important;
-    padding: 0 !important;
-    gap: unset !important;
-    grid-template-columns: unset !important;
-    grid-auto-rows: unset !important;
-}
-
-/* 2. Creeper Face 原版按钮外观：3D 边框 */
-#page-options-container .page-options-bottom a {
-    display: inline-flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: auto !important;
-    flex: initial !important;
-    min-width: unset !important;
-    padding: 0.5rem !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-    border-style: solid !important;
-    border-width: 2px !important;
-    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4) !important;
-    background: rgb(var(--btn-bg)) !important;
-    color: rgb(var(--btn-txt)) !important;
-    font-family: var(--ui-font) !important;
-    font-size: calc(0.6rem + 0.4vw) !important;
-    transition: background var(--global-duration), color var(--global-duration) !important;
-}
-
-/* 3. 悬停：背景变灰，加粗（Creeper Face 原版行为） */
-#page-options-container .page-options-bottom a:hover {
-    background: hsla(0, 0%, 45%, 0.3) !important;
-    font-weight: bold !important;
-}
-
-/* 4. 聚焦：内凹边框效果 */
-#page-options-container .page-options-bottom a:focus {
-    background: rgb(var(--btn-bg)) !important;
-    border-color: black hsla(0, 0%, 45%, 0.4) hsla(0, 0%, 45%, 0.4) black !important;
-    font-weight: bold !important;
-}
-
-/* 5. 取消 more-options 的特殊定位 */
-#page-options-container .page-options-bottom a#more-options-button {
-    grid-column: auto !important;
-    grid-row: auto !important;
-    border-left: 2px solid hsla(0, 0%, 45%, 0.4) !important;
 }
