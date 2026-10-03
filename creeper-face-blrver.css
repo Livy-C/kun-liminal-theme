@@ -1584,11 +1584,15 @@ table:is(.wiki-content-table, .page-compare, table.form.grid) {
     }
 }
 
-:root {
-    --banner-height: 10rem;
+/* === 修复：横幅跟着页面滚动，不遮挡内容 === */
+
+/* 1. header 不再 sticky，回到正常文档流 */
+#header {
+    position: relative !important;
+    top: auto !important;
 }
 
-/* 2. 去掉 #content-wrap 的负 margin，让内容从 header 下方开始 */
+/* 2. content-wrap 不用负 margin，内容从 header 下方开始 */
 #content-wrap {
     margin: 0 1rem 0 !important;
     padding-top: 1rem !important;
@@ -1596,17 +1600,13 @@ table:is(.wiki-content-table, .page-compare, table.form.grid) {
 
 @media (min-width: 64rem) {
     #content-wrap {
+        gap: unset;
         margin: 0 1rem 0 !important;
         padding: 1rem 0 0 0 !important;
     }
 }
 
-/* 3. header 不再用负 top 滚出视口 */
-#header {
-    top: 0 !important;
-}
-
-/* 4. 移动端也同步 */
+/* 3. 移动端横幅矮一点 */
 @media screen and (max-width: 768px) {
     :root {
         --banner-height: 7rem;
