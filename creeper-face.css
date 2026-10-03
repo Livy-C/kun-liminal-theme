@@ -4418,11 +4418,16 @@ hr {
    横幅就盖到正文上，重叠量恰好等于被压掉的高度差。
    （实测：565px 宽的维基页上被压成 98px，重叠 206px。）
 
-   下面两行把这个尺寸模型显式锁回来。正常环境下它们是空操作，只是让本
-   文件在层叠中"有话说"；放在整份文件最后，以便压过加载更早的同名规则。
-   若冲突的规则是**在本文件之后**加载的，还需在其后追加 !important。
+   下面两行把这个尺寸模型显式锁回来，放在整份文件最后。
+
+   关于 height 上的 !important：实测（blockrooms-wiki-cn 的 start 页）那条把
+   #header 压成 97.5px 的规则是 author origin 且**不带** !important ——
+   依据是往元素上挂一个内联的 height:auto（author、非 !important）就能把它压
+   回去。author origin 里 !important 的普通声明永远胜过普通声明，所以这里加
+   !important 可以不问加载顺序稳赢。若日后找到并移除了那条冲突规则，可以把
+   !important 去掉。
    ================================================================ */
 #header {
-    height: auto;
+    height: auto !important;
     grid-template-rows: auto auto auto var(--header-height) var(--topbar-height);
 }
