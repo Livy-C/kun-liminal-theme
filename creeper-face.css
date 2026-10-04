@@ -4469,13 +4469,15 @@ hr {
    ══════════════════════════════════════════════════════════════ */
 @font-face {
     font-family: "Minecraft";
-    src: url("https://blockrooms-wiki-cn.wikidot.com/local--files/start/minecraft.woff2") format("woff2"),
+    src: url("https://cdn.jsdelivr.net/npm/@south-paw/typeface-minecraft@1.0.0/files/minecraft.woff2") format("woff2"),
+         url("https://cdn.jsdelivr.net/npm/@south-paw/typeface-minecraft@1.0.0/files/minecraft.woff") format("woff");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 :root {
+    /* 点阵字体需要整数像素 */
     --global-font-size: 16px;
     --global-final-size: var(--global-font-size);
 
@@ -4638,4 +4640,123 @@ hr {
     #page-options-container .page-options-bottom a#more-options-button {
         border-left: unset !important;
     }
+}
+
+
+
+/* ================================================================
+   10. 指南页常用组件
+   ================================================================ */
+
+/* ══════════════════════════════════════════════════════════════
+   指南页常用组件
+     · styled-quote / dark-styled-quote / quote-block
+     · 正文里的 [[collapsible]] 折叠块
+   ══════════════════════════════════════════════════════════════
+   前三个类来自中文后室社区（超阈限那一系）的组件写法，本版式里没有；
+   折叠块则是因为主题现有的 collapsible 规则只覆盖两种情形：
+     · #side-bar .collapsible-block …   —— 侧栏专用
+     · .bettercollap .collapsible-block … —— 需要额外挂 .bettercollap 类
+   正文里的 `[[collapsible]]` 生成的是朴素的 .collapsible-block 结构，
+   一直没有任何样式。
+
+   关于配色：超阈限原本靠 --pale-gray-monochrome 与 --gray-monochrome
+   的明暗互换来区分两个变体，但在本版式的深色下这两个变量都落在
+   68~72 的同一区间（见第 3 节），换不出对比。所以这里改用本版式
+   自己的面（--light-block-bg / --dark-block-bg）加块室绿作强调，
+   得到真正有层次的三个变体。
+
+   注：折叠块用 #page-content 限定作用域，不会影响侧栏；
+   另用 :not(.licensebox *) 排除许可信息框（它有自己的样式）。
+   ══════════════════════════════════════════════════════════════ */
+
+/* ① styled-quote —— 文章开头的标题横幅 */
+.styled-quote {
+    background-color: rgb(var(--light-block-bg));
+    color: rgb(var(--light-block-txt));
+    border-left: 0.5rem solid rgb(var(--mc-green));
+    padding: 0.25rem 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.styled-quote hr {
+    margin: 0.5rem 0;
+}
+
+.styled-quote p {
+    margin: 0.25rem 0;
+}
+
+/* ② dark-styled-quote —— 同款但更沉，用于次级提示 */
+.dark-styled-quote {
+    background-color: rgb(var(--dark-block-bg));
+    color: rgb(var(--dark-block-txt));
+    border-left: 0.5rem solid rgb(var(--global-border));
+    padding: 0.25rem 1.25rem;
+    margin: 1.5rem 0;
+}
+
+/* ③ quote-block —— 正文里的引述块：不带左边条，靠底色区分 */
+.quote-block {
+    background-color: rgb(var(--dark-block-bg));
+    color: rgb(var(--dark-block-txt));
+    border: var(--global-border-width) solid rgb(var(--global-border));
+    padding: 0.75rem 1.25rem;
+    margin: 1.25rem 0;
+}
+
+/* 上面三个都别让首尾子元素顶出多余留白 */
+:is(.styled-quote, .dark-styled-quote, .quote-block) > :first-child {
+    margin-top: 0;
+}
+
+:is(.styled-quote, .dark-styled-quote, .quote-block) > :last-child {
+    margin-bottom: 0;
+}
+
+/* ④ 正文里的折叠块：按钮沿用主题的 Minecraft 立体描边 */
+#page-content .collapsible-block-link:not(.licensebox *) {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2rem 0;
+    padding: 0.35rem 0.9rem;
+    background: rgb(var(--btn-bg));
+    color: rgb(var(--btn-txt));
+    font-family: var(--ui-font);
+    font-size: calc(0.7rem + 0.3vw);
+    text-decoration: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: hsla(0, 0%, 45%, 0.4) black black hsla(0, 0%, 45%, 0.4);
+    transition: background var(--global-duration), color var(--global-duration);
+}
+
+#page-content .collapsible-block-link:not(.licensebox *):is(:hover, :focus) {
+    background: hsla(0, 0%, 45%, 0.3);
+    color: rgb(var(--btn-hover-txt));
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* 折叠出来的内容面板 */
+#page-content .collapsible-block-content {
+    background: rgb(var(--light-block-bg));
+    color: rgb(var(--light-block-txt));
+    border: var(--global-border-width) solid rgb(var(--global-border));
+    padding: 0.5rem 1rem;
+    margin: 0.2rem 0 1.2rem;
+}
+
+#page-content .collapsible-block-content > :first-child {
+    margin-top: 0;
+}
+
+#page-content .collapsible-block-content > :last-child {
+    margin-bottom: 0;
+}
+
+/* 面板里通常是代码引用块，别再多套一层边距 */
+#page-content .collapsible-block-content :is(blockquote, .blockquote) {
+    margin: 0.4rem 0;
 }
